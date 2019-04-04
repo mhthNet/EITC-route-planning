@@ -67,7 +67,7 @@ namespace EITC_route_planning.Services
                     {
                         Category category = new Category();
                         category.Name = reader[1].ToString();
-                        category.PriceFactor = (float) reader[2]; 
+                        category.PriceFactor = float.Parse(reader[2].ToString()); 
                         categories.Add(category);
                     }
                 }
