@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
+using EITC_route_planning.Services;
 
 namespace EITC_route_planning.Models
 {
@@ -10,6 +12,9 @@ namespace EITC_route_planning.Models
     {
         public City(string name)
         {
+            var some = DbHelper.GetAllCities();
+            if (DbHelper.GetAllCities().All(c => c.Name != name))
+                throw new InvalidDataException("city name does not exists");
             Name = name;
         }
 

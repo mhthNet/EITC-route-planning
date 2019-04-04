@@ -35,10 +35,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2016 14:24:40</publishTime>
     </File>
     <File Include="bin/EITC route planning.dll">
-      <publishTime>04/04/2019 22:12:25</publishTime>
+      <publishTime>04/05/2019 00:16:14</publishTime>
     </File>
     <File Include="bin/EITC route planning.pdb">
-      <publishTime>04/04/2019 22:12:25</publishTime>
+      <publishTime>04/05/2019 00:16:14</publishTime>
     </File>
     <File Include="bin/FSharp.Core.dll">
       <publishTime>12/02/2014 11:41:06</publishTime>
@@ -389,16 +389,181 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/04/2019 14:39:11</publishTime>
+      <publishTime>04/04/2019 23:56:11</publishTime>
     </File>
     <File Include="Views/Home/RouteOverview.cshtml">
-      <publishTime>04/04/2019 18:25:11</publishTime>
+      <publishTime>04/04/2019 22:25:24</publishTime>
+    </File>
+    <File Include="Views/Map/css/fontawesome-all.min.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/cancel.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/cancel_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/check.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/check_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/focus.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/focus_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/layers-2x.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/layers.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/marker-icon-2x.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/marker-icon.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/marker-shadow.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/measure-control.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/rulers.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/rulers_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/start.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/start_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/throbber.gif">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/trash.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/images/trash_%402X.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/leaflet-measure.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/leaflet.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/MarkerCluster.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/MarkerCluster.Default.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/css/qgis2web.css">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/data/Beskretmaske_2.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/data/Beskretmaske_2.png.aux.xml">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/data/cities_3.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/data/routes_4.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/data/temp_bound_1.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/index.cshtml">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/Autolinker.min.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/labelgun.min.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/labels.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet-hash.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet-heat.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet-measure.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet-svg-shape-markers.min.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet-tilelayer-wmts.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.js.map">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.markercluster.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.pattern.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.rotatedMarker.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/Leaflet.VectorGrid.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/leaflet.wms.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/multi-style-layer.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/OSMBuildings-Leaflet.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/qgis2web_expressions.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/js/rbush.min.js">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/legend/cities_3.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/legend/routes_4.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/legend/temp_bound_1.png">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/webfonts/fa-solid-900.ttf">
+      <publishTime>04/04/2019 23:56:11</publishTime>
+    </File>
+    <File Include="Views/Map/webfonts/fa-solid-900.woff2">
+      <publishTime>04/04/2019 23:56:11</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/04/2019 14:39:11</publishTime>
+      <publishTime>04/04/2019 22:25:24</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/04/2019 07:42:21</publishTime>
@@ -407,7 +572,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/04/2019 20:38:52</publishTime>
+      <publishTime>04/04/2019 23:10:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

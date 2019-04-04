@@ -23,8 +23,9 @@ namespace EITC_route_planning.Services
             ).ToList();
         }
 
+        private static int Id = 0;
         private static CachedSection CalculateCachedSegment(Section section, float weight, Category category)
-        {
+        { 
             return new CachedSection(
                 price: CalculatePrice(section, weight, category),
                 duration:CalculateDuration(section),
@@ -32,7 +33,7 @@ namespace EITC_route_planning.Services
                 category: category,
                 from: section.From,
                 to: section.To,
-                length: section.Length
+                provider: ""
                 );
         }
 
@@ -50,7 +51,7 @@ namespace EITC_route_planning.Services
 
             WeightGroup weightGroup = weightGroups
                 .OrderByDescending(it => it.MaxWeight)
-                .First(it => it.MaxWeight < weight);
+                .First(it => it.MaxWeight > weight);
             return weightGroup.Price * (decimal)category.PriceFactor;
         }
     }
