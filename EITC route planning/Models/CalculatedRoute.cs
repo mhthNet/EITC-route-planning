@@ -10,5 +10,7 @@ namespace EITC_route_planning.Models
         public Decimal Price { get; set; }
         public float Duration { get; set; }
         public List<CachedSection> Route { get; set; }
+        
+
     }
 }

@@ -9,7 +9,7 @@ namespace EITC_route_planning.Models
     {
         public City From { get; set; }
         public City To { get; set; }
-
         public int Length { get; set; }
+        public TransportationType TransportationType { get; set; }
     }
 }
