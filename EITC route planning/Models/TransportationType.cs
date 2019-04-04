@@ -7,7 +7,7 @@ namespace EITC_route_planning.Models
 {
     public class TransportationType
     {
-        public string Name { get; set; }
+        public TransportationType(string Type)
         public string Type { get; set; }
 
         public int Speed { get; set; }

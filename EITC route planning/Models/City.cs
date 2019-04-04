@@ -10,11 +10,15 @@ namespace EITC_route_planning.Models
     {
         public City(){ }
 
-        public City(string name)
+        public City(string name, float xlocation, float ylocation)
         {
             Name = name;
+            XLocation = xlocation;
+            YLocation = ylocation;
         }
         public String Name { get; set; }
-        public Point Location { get; set; }
+        public float XLocation { get; set; }
+        public float YLocation { get; set; }
+
     }
 }
