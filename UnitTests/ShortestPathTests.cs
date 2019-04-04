@@ -9,7 +9,7 @@ using QuickGraph;
 namespace BusinessLogic
 {
     [TestClass]
-    public class ShortestPathCalcTests
+    public class ShortestPathTests
     {
 
 

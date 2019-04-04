@@ -22,7 +22,7 @@ namespace EITC_route_planning.Services
             {
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.from_Name LIKE Cities.name", conn);
+                SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON UPPER(Section.from_Name) LIKE UPPER(Cities.name)", conn);
                 
                 List<Section> sections = new List<Section>();
                 List<City> citiesFrom = new List<City>();
@@ -39,14 +39,14 @@ namespace EITC_route_planning.Services
                         float xLocation = float.Parse(reader[9].ToString());
                         float yLocation = float.Parse(reader[10].ToString());
                         length = (int) reader[5];
-                        cityFrom = new City(name, xLocation, yLocation);
+                        cityFrom = new City(name.ToUpper(), xLocation, yLocation);
                         citiesFrom.Add(cityFrom);
                         lengths.Add(length);
                     }
                     reader.Close();
                 }
 
-                SqlCommand command2 = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.to_name LIKE Cities.name", conn);
+                SqlCommand command2 = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON UPPER(Section.to_name) LIKE UPPER(Cities.name)", conn);
                 using (SqlDataReader reader2 = command2.ExecuteReader())
                 {
                     while (reader2.Read())
@@ -55,7 +55,7 @@ namespace EITC_route_planning.Services
                         String name = reader2[2].ToString();
                         float xLocation = float.Parse(reader2[9].ToString());
                         float yLocation = float.Parse(reader2[10].ToString());
-                        cityTo = new City(name, xLocation, yLocation);
+                        cityTo = new City(name.ToUpper(), xLocation, yLocation);
                         citiesTo.Add(cityTo);
                     }
                     reader2.Close();
@@ -91,7 +91,7 @@ namespace EITC_route_planning.Services
             City cityWithId = null;
             foreach (var city in cities)
             {
-                if (city.Name == name)
+                if (city.Name.ToUpper() == name.ToUpper())
                 {
                     cityWithId = city;
                     break;
@@ -117,7 +117,7 @@ namespace EITC_route_planning.Services
                         String nameType = reader[1].ToString();
                         float xLocation = float.Parse(reader[2].ToString());
                         float yLocation = float.Parse(reader[3].ToString());
-                        City city = new City(nameType, xLocation, yLocation);
+                        City city = new City(nameType.ToUpper(), xLocation, yLocation);
                         cities.Add(city);
                     }
                 }
@@ -147,8 +147,8 @@ namespace EITC_route_planning.Services
                         string cityFromName = reader[3].ToString();
                         string cityToName = reader[4].ToString();
 
-                        City from = GetCityByName(cityFromName);
-                        City to = GetCityByName(cityToName);
+                        City from = GetCityByName(cityFromName.ToUpper());
+                        City to = GetCityByName(cityToName.ToUpper());
 
                         string provider = reader[5].ToString();
                         float weight = float.Parse(reader[6].ToString());
@@ -282,10 +282,9 @@ namespace EITC_route_planning.Services
         {
             return new List<WeightGroup>()
             {
-                new WeightGroup(1, 40),
-                new WeightGroup(10, 50),
-                new WeightGroup(50, 60),
-                new WeightGroup(100, 70)
+                new WeightGroup(10, 5),
+                new WeightGroup(50, 6),
+                new WeightGroup(101, 8)
             };
         }
     }

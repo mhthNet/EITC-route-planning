@@ -18,6 +18,8 @@ namespace EITC_route_planning.Controllers
         // GET api/<controller>/5 
         public IHttpActionResult Get(string fromName, string toName, string parcelType, int weight, int filter)
         {
+            fromName = fromName.ToUpper();
+            toName = toName.ToUpper();
             if (!DbHelper.GetAllCities().Select(x => x.Name).Contains(fromName) ||
                 !DbHelper.GetAllCities().Select(x => x.Name).Contains(toName))
             {
