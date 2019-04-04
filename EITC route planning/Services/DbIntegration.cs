@@ -8,9 +8,9 @@ namespace EITC_route_planning.Services
 {
     public class DbIntegration
     {
-        public List<Section> GetAllSectionsFromDb()
+        public List<CalculatedRoute> GetAllSectionsFromDb()
         {
-            return new List<Section>();
+            return new List<CalculatedRoute>();
         }
     }
 }

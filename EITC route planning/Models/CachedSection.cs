@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EITC_route_planning.Models
 {
-    public class CachedSection : Section
+    public class CachedSection : CalculatedRoute
     {
         public decimal Price { get; set; }
         public float Duration { get; set; }
