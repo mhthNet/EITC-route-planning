@@ -203,6 +203,7 @@
     <Compile Include="BusinessLogic\ShortestPath.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RouteCalculatorController.cs" />
+    <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,7 +211,8 @@
     <Compile Include="Models\CalculatedRoute.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\EternalIntegrationConnections.cs" />
+    <Compile Include="Models\Provider.cs" />
+    <Compile Include="Models\RouteOverview.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionRequest.cs" />
     <Compile Include="Models\Shippment.cs" />
@@ -267,6 +269,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\RouteOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\RouteCalculator\" />

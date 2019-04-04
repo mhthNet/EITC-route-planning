@@ -120,6 +120,34 @@ namespace EITC_route_planning.Services
             throw new NotImplementedException();
         }
 
+        public static List<TransportationType> getAllTransportationTypes()
+        {
+
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM TransportationType", conn);
+
+                List<TransportationType> transportationTypes = new List<TransportationType>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        TransportationType transportationType = new TransportationType();
+                        transportationType.Name = reader[1].ToString();
+                        transportationType.Type = reader[2].ToString();
+                        transportationType.Speed = (int) reader[3];
+                        transportationType.WeightLimit = float.Parse(reader[2].ToString());
+                        transportationTypes.Add(transportationType);
+                    }
+                }
+
+                return transportationTypes;
+            }
+        }
+
         public static List<Category> GetAllCategoriesFromDb()
         {
             using (SqlConnection conn = new SqlConnection())
