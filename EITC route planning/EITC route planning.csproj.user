@@ -17,11 +17,8 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-<<<<<<< HEAD
     <NameOfLastUsedPublishProfile>wa-eitdk - FTP</NameOfLastUsedPublishProfile>
-=======
     <ProjectView>ShowAllFiles</ProjectView>
->>>>>>> b279daca5b255f15f4d310a68d7e2eca430c5233
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

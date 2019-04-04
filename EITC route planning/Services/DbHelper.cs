@@ -135,11 +135,10 @@ namespace EITC_route_planning.Services
                 {
                     while (reader.Read())
                     {
-                        TransportationType transportationType = new TransportationType();
-                        transportationType.Name = reader[1].ToString();
-                        transportationType.Type = reader[2].ToString();
-                        transportationType.Speed = (int) reader[3];
-                        transportationType.WeightLimit = float.Parse(reader[2].ToString());
+                        TransportationType transportationType = new TransportationType(type, speed, weightLimit);
+                        type = reader[1].ToString();
+                        speed = float.Parse(reader[2].ToString());
+                        weightLimit = float.Parse(reader[3].ToString());
                         transportationTypes.Add(transportationType);
                     }
                 }
