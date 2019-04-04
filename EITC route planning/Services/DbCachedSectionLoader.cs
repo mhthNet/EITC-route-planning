@@ -10,7 +10,7 @@ namespace EITC_route_planning.Services
     {
         public static List<CachedSection> Load(Category category)
         {
-            return new List<CachedSection>();
+            return DbHelper.GetAllCachedSectionsFromDb();
         }
     }
 }
