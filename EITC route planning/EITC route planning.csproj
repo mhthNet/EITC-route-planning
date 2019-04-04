@@ -172,6 +172,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\Shippment.cs" />
     <Compile Include="Models\TransportationType.cs" />
     <Compile Include="Models\WeightGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
