@@ -285,10 +285,9 @@ namespace EITC_route_planning.Services
         {
             return new List<WeightGroup>()
             {
-                new WeightGroup(1, 40),
-                new WeightGroup(10, 50),
-                new WeightGroup(50, 60),
-                new WeightGroup(100, 70)
+                new WeightGroup(10, 5),
+                new WeightGroup(50, 6),
+                new WeightGroup(100, 8)
             };
         }
     }
