@@ -4,54 +4,56 @@ using System.Linq;
 using System.Web;
 using EITC_route_planning.Models;
 using QuickGraph;
+using QuickGraph.Algorithms;
 using QuickGraph.Algorithms.RankedShortestPath;
 
 namespace EITC_route_planning.BusinessLogic
 {
-    public class ShortestPath
+    public static class ShortestPath
     {
-        public void Calculate()
+        public static void Calculate()
         {
             // not implemented
         }
-        public List<CalculatedRoute> calculateKRoutes(City origin, City destination, List<City> cities, List<CachedSection> cachedSections, bool fastest, int k)
+        public static List<CalculatedRoute> calculateKRoutes(string origin, string destination, List<string> cities, List<CachedSection> cachedSections, bool fastest, int k)
         {
             var graph = CreateBidirectionalGraph(cities, cachedSections, fastest);
 
 
-            HoffmanPavleyRankedShortestPathAlgorithm<City, WeightedTaggedUndirectedEdge<City, string>> hoffmanAlgorithm =
-                new HoffmanPavleyRankedShortestPathAlgorithm<City, WeightedTaggedUndirectedEdge<City, string>>(
-                    graph,
-                    x => x.Weight
-                );
+            //HoffmanPavleyRankedShortestPathAlgorithm<string, WeightedTaggedUndirectedEdge<string, string>> hoffmanAlgorithm =
+            //    new HoffmanPavleyRankedShortestPathAlgorithm<string, WeightedTaggedUndirectedEdge<string, string>>(
+            //        graph,
+            //        x => x.Weight
+            //    );
 
-            hoffmanAlgorithm.ShortestPathCount = k;
-            hoffmanAlgorithm.SetRootVertex(origin);
-            hoffmanAlgorithm.Compute(origin, destination);
-
-            foreach (IEnumerable<TaggedUndirectedEdge<City, string>> path in hoffmanAlgorithm.ComputedShortestPaths)
-            {
-                // Not implemented
-            }
+            //hoffmanAlgorithm.ShortestPathCount = k;
+            //hoffmanAlgorithm.SetRootVertex(origin);
+            //hoffmanAlgorithm.Compute(origin, destination);
+            var res = graph.RankedShortestPathHoffmanPavley(x => x.Weight, origin, destination, k);
+            
+            //foreach (IEnumerable<TaggedUndirectedEdge<City, string>> path in hoffmanAlgorithm.ComputedShortestPaths)
+            //{
+            //    // Not implemented
+            //}
             throw new NotImplementedException();
         }
 
-        private static BidirectionalGraph<City, WeightedTaggedUndirectedEdge<City, string>> CreateBidirectionalGraph(List<City> cities, List<CachedSection> cachedSections, bool fastest)
+        private static BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>> CreateBidirectionalGraph(List<string> cities, List<CachedSection> cachedSections, bool fastest)
         {
-            BidirectionalGraph<City, WeightedTaggedUndirectedEdge<City, string>> graph =
-                new BidirectionalGraph<City, WeightedTaggedUndirectedEdge<City, string>>(true);
+            BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>> graph =
+                new BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>>(true);
             // Add nodes to map
-            foreach (City city in cities)
+            foreach (string city in cities)
             {
                 graph.AddVertex(city);
             }
             // Add weighted edges to map
             foreach (CachedSection section in cachedSections)
             {
-                var edge = new WeightedTaggedUndirectedEdge<City, string>(section.From, section.To, section.Provider, fastest ? section.Duration : (float)section.Price);
+                var edge = new WeightedTaggedUndirectedEdge<string, string>(section.From.Name, section.To.Name, section.Provider, fastest ? section.Duration : (float)section.Price);
                 graph.AddEdge(edge);
-                //var oppositeEdge = new WeightedTaggedUndirectedEdge<City, string>(section.To, section.From, section.Provider, fastest ? section.Duration : (float)section.Price);
-                //graph.AddEdge(oppositeEdge);
+                var oppositeEdge = new WeightedTaggedUndirectedEdge<string, string>(section.To.Name, section.From.Name, section.Provider, fastest ? section.Duration : (float)section.Price);
+                graph.AddEdge(oppositeEdge);
             }
             return graph;
         }

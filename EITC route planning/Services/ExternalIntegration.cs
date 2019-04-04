@@ -11,25 +11,39 @@ namespace EITC_route_planning.Services
 {
     public class ExternalIntegration
     {
-        static List<EternalIntegrationConnections> connections = new List<EternalIntegrationConnections>()
+        public static Provider Telstar = new Provider(
+            "Telstar Logistics",
+            "Telstar.com/api/"
+        );
+
+        public static Provider Oceanic = new Provider(
+            "Oceanic",
+            "Oceanic.com/api/"
+        );
+
+
+        public static List<Provider> Providers = new List<Provider>()
             {
-                new EternalIntegrationConnections(
-                    "Telstar Logistics",
-                    "Telstar.com/api/"
-                    ),
-                new EternalIntegrationConnections(
-                "Oceanic",
-                "Oceanic.com/api/"
-                )
+                Oceanic,
+                Telstar
             };
 
-        public static List<CachedSection> LoadAllSectionsFromAllExternals(List<SectionRequest> sectionRequests, EternalIntegrationConnections conn)
+        public static List<CachedSection> LoadAllSectionsFromAllProviders(List<SectionRequest> sectionRequests)
         {
-            return sectionRequests.Select(s => LoadSectionFromExternal(conn, s)).ToList();
+            List<CachedSection> result = new List<CachedSection>();
+            foreach (Provider provider in Providers)
+            {
+                var requestsForProvider = sectionRequests.FindAll(x => x.Provider == provider);
+                result.AddRange(LoadAllSectionsFromProvider(requestsForProvider, provider));
+            }
+            return result;
         }
 
-       
-        private static CachedSection LoadSectionFromExternal(EternalIntegrationConnections externalConnection, SectionRequest sectionRequest)
+        public static List<CachedSection> LoadAllSectionsFromProvider(List<SectionRequest> sectionRequests, Provider provider)
+        {
+            return sectionRequests.Select(s => LoadSectionFromExternal(provider, s)).ToList();
+        }
+        private static CachedSection LoadSectionFromExternal(Provider externalConnection, SectionRequest sectionRequest)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>()
             {
@@ -41,7 +55,7 @@ namespace EITC_route_planning.Services
 
             var client = new RestClient(externalConnection.Endpoint);
 
-            var request = new RestRequest("routes/get", Method.GET);
+            var request = new RestRequest("routes", Method.GET);
             foreach (KeyValuePair<string, string> entry in parameters)
             {
                 request.AddParameter(entry.Key, entry.Value);
@@ -61,7 +75,8 @@ namespace EITC_route_planning.Services
                 data.Price,
                 data.Duration,
                 sectionRequest.Weight,
-                sectionRequest.Category
+                sectionRequest.Category,
+                data.Length
             );
         }
     }

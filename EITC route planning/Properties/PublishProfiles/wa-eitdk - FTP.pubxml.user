@@ -10,6 +10,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>ftp://waws-prod-am2-127.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include=".gitignore">
+      <publishTime>04/04/2019 14:20:10</publishTime>
+    </File>
     <File Include="ApplicationInsights.config">
       <publishTime>04/04/2019 07:42:38</publishTime>
     </File>
@@ -28,11 +31,29 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>04/04/2019 07:42:38</publishTime>
     </File>
+    <File Include="bin/DotParser.dll">
+      <publishTime>08/17/2016 14:24:40</publishTime>
+    </File>
     <File Include="bin/EITC route planning.dll">
-      <publishTime>04/04/2019 13:27:35</publishTime>
+      <publishTime>04/04/2019 18:34:33</publishTime>
     </File>
     <File Include="bin/EITC route planning.pdb">
-      <publishTime>04/04/2019 13:27:35</publishTime>
+      <publishTime>04/04/2019 18:34:33</publishTime>
+    </File>
+    <File Include="bin/FSharp.Core.dll">
+      <publishTime>12/02/2014 11:41:06</publishTime>
+    </File>
+    <File Include="bin/FSharpx.Collections.Experimental.dll">
+      <publishTime>01/27/2013 15:49:04</publishTime>
+    </File>
+    <File Include="bin/FSharpx.Collections.Experimental.pdb">
+      <publishTime>01/27/2013 15:49:04</publishTime>
+    </File>
+    <File Include="bin/FSharpx.Core.dll">
+      <publishTime>01/27/2013 15:48:40</publishTime>
+    </File>
+    <File Include="bin/FSharpx.Core.pdb">
+      <publishTime>01/27/2013 15:48:40</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 13:59:34</publishTime>
@@ -66,6 +87,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/18/2018 09:44:54</publishTime>
+    </File>
+    <File Include="bin/RestSharp.dll">
+      <publishTime>02/27/2019 20:13:34</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/24/2018 14:38:22</publishTime>
@@ -247,6 +271,30 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
+    <File Include="bin/YC.QuickGraph.Data.dll">
+      <publishTime>08/27/2018 22:26:32</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.dll">
+      <publishTime>08/27/2018 22:26:30</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.FSA.dll">
+      <publishTime>08/27/2018 22:26:34</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.FST.dll">
+      <publishTime>08/27/2018 22:26:36</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.Glee.dll">
+      <publishTime>08/27/2018 22:26:32</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.Graphviz.dll">
+      <publishTime>08/27/2018 22:26:32</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraph.Petri.dll">
+      <publishTime>08/27/2018 22:26:32</publishTime>
+    </File>
+    <File Include="bin/YC.QuickGraphFS.dll">
+      <publishTime>08/27/2018 22:26:34</publishTime>
+    </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>04/04/2019 07:42:25</publishTime>
     </File>
@@ -272,7 +320,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2019 07:42:25</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>04/04/2019 07:42:21</publishTime>
+      <publishTime>04/04/2019 18:25:11</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/04/2019 07:42:21</publishTime>
@@ -341,13 +389,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/04/2019 07:42:21</publishTime>
+      <publishTime>04/04/2019 14:39:11</publishTime>
+    </File>
+    <File Include="Views/Home/RouteOverview.cshtml">
+      <publishTime>04/04/2019 18:25:11</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/04/2019 07:42:21</publishTime>
+      <publishTime>04/04/2019 14:39:11</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/04/2019 07:42:21</publishTime>
@@ -356,7 +407,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/04/2019 07:42:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/04/2019 13:27:42</publishTime>
+      <publishTime>04/04/2019 18:34:35</publishTime>
     </File>
   </ItemGroup>
 </Project>

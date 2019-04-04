@@ -8,6 +8,15 @@ namespace EITC_route_planning.Models
 {
     public class CachedSection : Section
     {
+        public int Id { get; set; }
+        public decimal Price { get; set; }
+        public float Duration { get; set; }
+        public float Weight { get; set; }
+        public Category Category { get; set; }
+        public string Provider { get; set; }
+
+        public CachedSection() { }
+
         public CachedSection(decimal price, float duration, float weight, Category category, string provider)
         {
             Price = price;
@@ -16,6 +25,7 @@ namespace EITC_route_planning.Models
             Category = category;
             Provider = provider;
         }
+
         public CachedSection(City cityFrom, City cityTo, decimal price, float duration, string provider)
         {
             Price = price;
@@ -25,14 +35,7 @@ namespace EITC_route_planning.Models
             To = cityTo;
         }
 
-        public decimal Price { get; set; }
-        public float Duration { get; set; }
-        public float Weight { get; set; }
-        public Category Category { get; set; }
-        public string Provider { get; set; }
-        public CachedSection() { }
-
-        public CachedSection(City from, City to, Decimal price, float duration, float weight, Category category)
+        public CachedSection(City from, City to, Decimal price, float duration, float weight, Category category, int length)
         {
             Price = price;
             Duration = duration;
@@ -40,6 +43,7 @@ namespace EITC_route_planning.Models
             Category = category;
             From = from;
             To = to;
+            Length = length;
         }
     }
 
