@@ -12,18 +12,13 @@ namespace EITC_route_planning.Services
     public class DbHelper
 
     {
-        private static City cityFrom;
-        private static string name;
-        private static City cityTo;
-        private static int length;
-        private static TransportationType transportType;
-        private static string nameType;
-        private static float xLocation;
-        private static float yLocation;
-        private static string type;
+        private static String type;
         private static float speed;
         private static float weightLimit;
-
+        private static TransportationType transportType;
+        private static City cityFrom;
+        private static City cityTo;
+        private static int length;
         public static List<Section> GetAllSectionsFromDb()
         {
             using (SqlConnection conn = new SqlConnection())
@@ -33,25 +28,28 @@ namespace EITC_route_planning.Services
                 SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.from_Name LIKE Cities.name", conn);
                 
                 List<Section> sections = new List<Section>();
-                Section section = new Section(cityFrom, cityTo, length, transportType);
-
+                List<City> citiesFrom = new List<City>();
+                List<City> citiesTo = new List<City>();
+                List<Int32> lengths = new List<Int32>();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         
-                        cityFrom = new City(name, xLocation, yLocation);
-                        name = reader[1].ToString();
                         
-                        xLocation = float.Parse(reader[9].ToString());
-                        yLocation = float.Parse(reader[10].ToString());
+                        String name = reader[1].ToString();
+
+                        float xLocation = float.Parse(reader[9].ToString());
+                        float yLocation = float.Parse(reader[10].ToString());
                         length = (int) reader[5];
                         System.Diagnostics.Debug.WriteLine("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
                         System.Diagnostics.Debug.WriteLine(name);
                         System.Diagnostics.Debug.WriteLine(xLocation);
                         System.Diagnostics.Debug.WriteLine(yLocation);
                         System.Diagnostics.Debug.WriteLine(length);
-
+                        cityFrom = new City(name, xLocation, yLocation);
+                        citiesFrom.Add(cityFrom);
+                        lengths.Add(length);
                     }
                     reader.Close();
                 }
@@ -61,11 +59,12 @@ namespace EITC_route_planning.Services
                 {
                     while (reader2.Read())
                     {
-                        cityTo = new City(name, xLocation, yLocation);
-                        name = reader2[2].ToString();
-                        xLocation = float.Parse(reader2[9].ToString());
-                        yLocation = float.Parse(reader2[10].ToString());
                         
+                        String name = reader2[2].ToString();
+                        float xLocation = float.Parse(reader2[9].ToString());
+                        float yLocation = float.Parse(reader2[10].ToString());
+                        cityTo = new City(name, xLocation, yLocation);
+                        citiesTo.Add(cityTo);
                     }
                     reader2.Close();
                 }
@@ -75,18 +74,28 @@ namespace EITC_route_planning.Services
                 {
                     while (reader3.Read())
                     {
-                        transportType = new TransportationType(type, speed, weightLimit);
-                        type = reader3[1].ToString();
-                        speed = float.Parse(reader3[2].ToString());
-                        weightLimit = float.Parse(reader3[3].ToString());
                         
+                        String type = reader3[1].ToString();
+                        float speed = float.Parse(reader3[2].ToString());
+                        float weightLimit = float.Parse(reader3[3].ToString());
+                        transportType = new TransportationType(type, speed, weightLimit);
                     }
                     reader3.Close();
-                }       
-                        
-                sections.Add(section);
+                }
+                System.Diagnostics.Debug.WriteLine(citiesFrom.Count);
+                System.Diagnostics.Debug.WriteLine(citiesTo.Count);
+                System.Diagnostics.Debug.WriteLine(lengths.Count);
+
+                for (int i = 0; i < citiesFrom.Count; i++)
+                {
+                    Section section = new Section(citiesFrom[i], citiesTo[i], lengths[i], transportType);
+                    sections.Add(section);
+                }
+                
+
                 System.Diagnostics.Debug.WriteLine("TESTING!!!!!!!!!!!!!!!!!!");
                 System.Diagnostics.Debug.WriteLine(sections[0].From.Name);
+                
 
                 return sections;
             }
@@ -106,10 +115,10 @@ namespace EITC_route_planning.Services
                 {
                     while (reader.Read())
                     {
+                        String nameType = reader[1].ToString();
+                        float xLocation = float.Parse(reader[2].ToString());
+                        float yLocation = float.Parse(reader[3].ToString());
                         City city = new City(nameType, xLocation, yLocation);
-                        nameType = reader[1].ToString();
-                        xLocation = float.Parse(reader[2].ToString());
-                        yLocation = float.Parse(reader[3].ToString());
                         cities.Add(city);
                     }
                 }
@@ -174,10 +183,10 @@ namespace EITC_route_planning.Services
                 {
                     while (reader.Read())
                     {
+                        String type = reader[1].ToString();
+                        float speed = float.Parse(reader[2].ToString());
+                        float weightLimit = float.Parse(reader[3].ToString());
                         TransportationType transportationType = new TransportationType(type, speed, weightLimit);
-                        type = reader[1].ToString();
-                        speed = float.Parse(reader[2].ToString());
-                        weightLimit = float.Parse(reader[3].ToString());
                         transportationTypes.Add(transportationType);
                     }
                 }
