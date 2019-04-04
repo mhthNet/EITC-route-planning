@@ -14,13 +14,13 @@ namespace EITC_route_planning
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            // school route
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/fromName={fromName}-toname={toName}-parcelType={parcelType}-weight={weight}-filter={filter}",
-            defaults: new { id = RouteParameter.Optional }
+            config.Routes.MapHttpRoute("get",
+                "api/{controller}/get",
+                new { controller = "RouteController", action = "get" }
+                //new { key = @"\d+", group = @"\d+" }
             );
+
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
         }

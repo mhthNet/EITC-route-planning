@@ -7,7 +7,7 @@ namespace EITC_route_planning.Services
 {
     public class DbRouteUpdater
     {
-        public void Update()
+        public static void Update()
         {
             float weight = 1;
             Category category = new Category("Default", 1);
@@ -19,7 +19,7 @@ namespace EITC_route_planning.Services
             DbHelper.SaveCachedSections(newCachedSections);
         }
 
-        private List<SectionRequest> BuildSectionRequests(out float weight, out Category category)
+        private static List<SectionRequest> BuildSectionRequests(out float weight, out Category category)
         {
             List<SectionRequest> sectionsRequests = new List<SectionRequest>();
             weight = 1;
@@ -32,7 +32,7 @@ namespace EITC_route_planning.Services
             return sectionsRequests;
         }
 
-        private List<SectionRequest> CityCombinations(float weight, Category category, Provider provider)
+        private static List<SectionRequest> CityCombinations(float weight, Category category, Provider provider)
         {
 
             List<City> cities = DbHelper.GetAllCities();

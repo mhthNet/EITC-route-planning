@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>East India Trading Company</h1>
 @using (Html.BeginForm("SearchRoute", "Home", FormMethod.Post))
 {
     <form class="row">
         <div class="col-sm-6">
-            <label for="weight">Weight</label>
+            <label for="weight">Weight (kg)</label>
             @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
 
             <!--<input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">-->
@@ -46,31 +45,34 @@
 
 <br />
 
-<div class="list-group">
-    <a href="/overview" class="list-group-item">
-        <div class="row">
-            <div class="col-xs-4">
-                <h4>Fastest Route</h4>
-            </div>
-            <div class="col-xs-8">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <strong>From:</strong> x
+@if (Model.searchedSections != null)
+{
+    <div class="list-group">
+        <a href="/overview" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h4>Fastest Route</h4>
+                </div>
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>From:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].From.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Duration:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].Length
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        <strong>Duration:</strong> x
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>To:</strong> @Model.searchedSections.ToArray()[0].ToArray()[1].To.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Cost:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <strong>To:</strong> x
-                    </div>
-                    <div class="col-xs-6">
-                        <strong>Cost:</strong> x
-                    </div>
-                </div>
             </div>
-        </div>
-    </a>
-    <a href="#" class="list-group-item">Cheapest route: </a>
-</div>
+        </a>
+        <a href="#" class="list-group-item">Cheapest route: </a>
+    </div>
+}
