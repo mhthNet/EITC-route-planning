@@ -6,6 +6,8 @@ using EITC_route_planning.Models;
 using QuickGraph;
 using QuickGraph.Algorithms;
 using QuickGraph.Algorithms.RankedShortestPath;
+using QuickGraph.FST;
+using QuickGraph.Serialization;
 
 namespace EITC_route_planning.BusinessLogic
 {
@@ -17,56 +19,87 @@ namespace EITC_route_planning.BusinessLogic
         }
         public static List<CalculatedRoute> calculateKRoutes(string origin, string destination, List<string> cities, List<CachedSection> cachedSections, bool fastest, int k)
         {
-            var graph = CreateBidirectionalGraph(cities, cachedSections, fastest);
+            var graphWeightTuple = CreateBidirectionalGraph(cities, cachedSections, fastest);
 
+            var pathAlgorithm = new HoffmanPavleyRankedShortestPathAlgorithm<string, TaggedEdge<string>>(graphWeightTuple.Item1, e => graphWeightTuple.Item2[e]);
+            pathAlgorithm.ShortestPathCount = k;
+            pathAlgorithm.Compute(origin, destination);
 
-            //HoffmanPavleyRankedShortestPathAlgorithm<string, WeightedTaggedUndirectedEdge<string, string>> hoffmanAlgorithm =
-            //    new HoffmanPavleyRankedShortestPathAlgorithm<string, WeightedTaggedUndirectedEdge<string, string>>(
-            //        graph,
-            //        x => x.Weight
-            //    );
+            var result = new List<CalculatedRoute>();
+            foreach (IEnumerable<TaggedEdge<string>> path in pathAlgorithm.ComputedShortestPaths)
+            {
+                var route = new CalculatedRoute();
+                route.Route = new List<CachedSection>();
+                decimal totalPrice = 0;
+                float totalDuration = 0;
+                foreach (TaggedEdge<string> section in path)
+                {
+                    var cachedSection = new CachedSection();
+                    cachedSection.Price = section.Price;
+                    totalPrice += section.Price;
+                    cachedSection.Duration = section.Duration;
+                    totalDuration += section.Duration;
 
-            //hoffmanAlgorithm.ShortestPathCount = k;
-            //hoffmanAlgorithm.SetRootVertex(origin);
-            //hoffmanAlgorithm.Compute(origin, destination);
-            var res = graph.RankedShortestPathHoffmanPavley(x => x.Weight, origin, destination, k);
-            
-            //foreach (IEnumerable<TaggedUndirectedEdge<City, string>> path in hoffmanAlgorithm.ComputedShortestPaths)
-            //{
-            //    // Not implemented
-            //}
-            throw new NotImplementedException();
+                    cachedSection.Provider = section.Provider;
+                    cachedSection.Category = section.Category;
+                    cachedSection.Weight = section.Weight;
+                    cachedSection.From = new City(section.Source);
+                    cachedSection.To = new City(section.Target);
+
+                    route.Route.Add(cachedSection);
+                }
+                route.Price = totalPrice;
+                route.Duration = totalDuration;
+
+                result.Add(route);
+            }
+            return result;
         }
 
-        private static BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>> CreateBidirectionalGraph(List<string> cities, List<CachedSection> cachedSections, bool fastest)
+        private static Tuple<BidirectionalGraph<string, TaggedEdge<string>>,Dictionary<TaggedEdge<string>, double>>
+            CreateBidirectionalGraph(List<string> cities, List<CachedSection> cachedSections, bool fastest)
         {
-            BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>> graph =
-                new BidirectionalGraph<string, WeightedTaggedUndirectedEdge<string, string>>(true);
+            BidirectionalGraph<string, TaggedEdge<string>> graph =
+                new BidirectionalGraph<string, TaggedEdge<string>>(true);
             // Add nodes to map
             foreach (string city in cities)
             {
                 graph.AddVertex(city);
             }
-            // Add weighted edges to map
+            // Add edges to map and create weight dictionary
+            var weights = new Dictionary<TaggedEdge<string>, double>();
             foreach (CachedSection section in cachedSections)
             {
-                var edge = new WeightedTaggedUndirectedEdge<string, string>(section.From.Name, section.To.Name, section.Provider, fastest ? section.Duration : (float)section.Price);
-                graph.AddEdge(edge);
-                var oppositeEdge = new WeightedTaggedUndirectedEdge<string, string>(section.To.Name, section.From.Name, section.Provider, fastest ? section.Duration : (float)section.Price);
-                graph.AddEdge(oppositeEdge);
+                var edge = new TaggedEdge<string>(section, section.From.Name, section.To.Name);
+                graph.AddVerticesAndEdge(edge);
+                weights[edge] = fastest ? section.Duration : (double) section.Price;
+                var oppositeEdge = new TaggedEdge<string>(section, section.To.Name, section.From.Name);
+                graph.AddVerticesAndEdge(oppositeEdge);
+                weights[oppositeEdge] = fastest ? section.Duration : (double)section.Price;
             }
-            return graph;
+            return new Tuple<
+                    BidirectionalGraph<string, TaggedEdge<string>>, 
+                    Dictionary<TaggedEdge<string>, double>
+                >(graph, weights);
         }
     }
 
-    public class WeightedTaggedUndirectedEdge<TVertex, TTag> : TaggedUndirectedEdge<TVertex, TTag>
+    public class TaggedEdge<TVertex> : Edge<TVertex>
     {
-        public double Weight { get; set; }
+        public decimal Price { get; set; }
+        public float Duration { get; set; }
+        public string Provider { get; set; }
+        public float Weight { get; set; }
+        public Category Category { get; set; }
 
-        public WeightedTaggedUndirectedEdge(TVertex source, TVertex target, TTag tag, double weight)
-            : base(source, target, tag)
+        public TaggedEdge(CachedSection section, TVertex source, TVertex target)
+            : base(source, target)
         {
-            Weight = weight;
+            Provider = section.Provider;
+            Duration = section.Duration;
+            Price = section.Price;
+            Weight = section.Weight;
+            Category = section.Category;
         }
     }
 }
