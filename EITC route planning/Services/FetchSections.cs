@@ -9,7 +9,6 @@ namespace EITC_route_planning.Services
 {
     public class FetchSections
     {
-
         public static List<CachedSection> FetchExternCachedSections(List<SectionRequest> sectionRequests)
         {
             return ExternalIntegration.LoadAllSectionsFromAllProviders(sectionRequests);
@@ -23,7 +22,6 @@ namespace EITC_route_planning.Services
             ).ToList();
         }
 
-        private static int Id = 0;
         private static CachedSection CalculateCachedSegment(Section section, float weight, Category category)
         { 
             return new CachedSection(
@@ -33,7 +31,7 @@ namespace EITC_route_planning.Services
                 category: category,
                 from: section.From,
                 to: section.To,
-                provider: ""
+                provider: ExternalIntegration.Telstar.Name
                 );
         }
 

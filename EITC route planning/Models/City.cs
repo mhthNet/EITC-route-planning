@@ -14,7 +14,7 @@ namespace EITC_route_planning.Models
         {
             var some = DbHelper.GetAllCities();
             if (DbHelper.GetAllCities().All(c => c.Name != name))
-                throw new InvalidDataException("city name does not exists");
+                throw new InvalidDataException("city name "+ name+ " does not exists");
             Name = name;
         }
 

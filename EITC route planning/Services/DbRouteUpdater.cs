@@ -10,16 +10,18 @@ namespace EITC_route_planning.Services
         public static void Update()
         {
             float weight = 1;
-            Category category = new Category("Default", 1);
-            var sectionsRequests = BuildSectionRequests(out weight, out category);
+            foreach (Category category in DbHelper.GetAllCategoriesFromDb())
+            {
+                var sectionsRequests = BuildSectionRequests(weight, category);
 
-            List<CachedSection> newCachedSections = FetchSections.FetchExternCachedSections(sectionsRequests);
+                List<CachedSection> newCachedSections = FetchSections.FetchExternCachedSections(sectionsRequests);
 
-            //save to db
-            DbHelper.SaveCachedSections(newCachedSections);
+                DbHelper.SaveCachedSections(newCachedSections);
+            }
+    
         }
 
-        private static List<SectionRequest> BuildSectionRequests(out float weight, out Category category)
+        private static List<SectionRequest> BuildSectionRequests(float weight, Category category)
         {
             List<SectionRequest> sectionsRequests = new List<SectionRequest>();
             weight = 1;
@@ -27,7 +29,8 @@ namespace EITC_route_planning.Services
 
             foreach (Provider provider in ExternalIntegration.Providers)
             {
-                sectionsRequests.AddRange(CityCombinations(weight, category, provider));
+                List<SectionRequest> req = CityCombinations(weight, category, provider);
+                sectionsRequests.AddRange(req);
             }
             return sectionsRequests;
         }

@@ -15,7 +15,7 @@ namespace UnitTests
         {
             DbHelper.ClearAllCachedSectionsFromDb();
             List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
-            List<CachedSection> cached = FetchSections.FetchInternCachedSections(2, new Category("new", 1));
+            List<CachedSection> cached = FetchSections.FetchInternCachedSections(2, new Category("Weapons", 1));
             DbHelper.SaveCachedSections(cached);
             var readout = DbHelper.GetAllCachedSectionsFromDb();
             
