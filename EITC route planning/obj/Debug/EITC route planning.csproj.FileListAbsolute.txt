@@ -95,6 +95,7 @@ C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EIT
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csproj.CopyComplete
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.dll
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.pdb
+<<<<<<< Updated upstream
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csprojResolveAssemblyReference.cache
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.dll
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.pdb
@@ -190,3 +191,7 @@ C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\bin\Micro
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\bin\Microsoft.AI.Web.xml
 C:\Users\wsh\Source\Repos\test\EITC-route-planning\EITC route planning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+=======
+C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\System.Net.Http.dll
+C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\System.Web.dll
+>>>>>>> Stashed changes

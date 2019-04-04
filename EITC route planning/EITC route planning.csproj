@@ -162,7 +162,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BusinessLogic\RouteCalculator.cs" />
     <Compile Include="BusinessLogic\ShortestPath.cs" />
-    <Compile Include="Controllers\ExternalIntegrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RouteCalculatorController.cs" />
     <Compile Include="Global.asax.cs">
