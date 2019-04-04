@@ -5,11 +5,10 @@ using System.Web;
 
 namespace EITC_route_planning.Models
 {
-    public class Section
+    public class WeightGroup
     {
-        public City From { get; set; }
-        public City To { get; set; }
-        public int Length { get; set; }
+        public float MaxWeight { get; set; }
+        public Decimal Price { get; set; }
         public TransportationType TransportationType { get; set; }
     }
 }
