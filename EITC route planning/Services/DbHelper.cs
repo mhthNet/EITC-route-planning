@@ -12,9 +12,6 @@ namespace EITC_route_planning.Services
     public class DbHelper
 
     {
-        private static String type;
-        private static float speed;
-        private static float weightLimit;
         private static TransportationType transportType;
         private static City cityFrom;
         private static City cityTo;
@@ -42,11 +39,6 @@ namespace EITC_route_planning.Services
                         float xLocation = float.Parse(reader[9].ToString());
                         float yLocation = float.Parse(reader[10].ToString());
                         length = (int) reader[5];
-                        System.Diagnostics.Debug.WriteLine("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
-                        System.Diagnostics.Debug.WriteLine(name);
-                        System.Diagnostics.Debug.WriteLine(xLocation);
-                        System.Diagnostics.Debug.WriteLine(yLocation);
-                        System.Diagnostics.Debug.WriteLine(length);
                         cityFrom = new City(name, xLocation, yLocation);
                         citiesFrom.Add(cityFrom);
                         lengths.Add(length);
@@ -82,9 +74,6 @@ namespace EITC_route_planning.Services
                     }
                     reader3.Close();
                 }
-                System.Diagnostics.Debug.WriteLine(citiesFrom.Count);
-                System.Diagnostics.Debug.WriteLine(citiesTo.Count);
-                System.Diagnostics.Debug.WriteLine(lengths.Count);
 
                 for (int i = 0; i < citiesFrom.Count; i++)
                 {
@@ -92,11 +81,6 @@ namespace EITC_route_planning.Services
                     sections.Add(section);
                 }
                 
-
-                System.Diagnostics.Debug.WriteLine("TESTING!!!!!!!!!!!!!!!!!!");
-                System.Diagnostics.Debug.WriteLine(sections[0].From.Name);
-                
-
                 return sections;
             }
         }
