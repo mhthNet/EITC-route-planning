@@ -124,7 +124,7 @@ namespace EITC_route_planning.BusinessLogic
             restrictedCities.Add("Kapstaden");
             var restrictedCategories = new List<string>();
             restrictedCategories.Add("Weapons");
-            restrictedCategories.Add("Animals");
+            restrictedCategories.Add("Live Animals");
             if (restrictedCategories.Contains(category.Name))
             {
                 return cachedSections.Where(x =>
