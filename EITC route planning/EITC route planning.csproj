@@ -211,6 +211,7 @@
     <Compile Include="Models\CalculatedRoute.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\ExternalInterfaceCommand.cs" />
     <Compile Include="Models\Provider.cs" />
     <Compile Include="Models\RouteOverview.cs" />
     <Compile Include="Models\Section.cs" />
