@@ -7,6 +7,8 @@ namespace EITC_route_planning.Models
 {
     public class Category
     {
+        public Category(){ }
+
         public Category(string name)
         {
             Name = name;

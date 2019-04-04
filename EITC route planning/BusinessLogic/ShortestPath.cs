@@ -10,7 +10,10 @@ namespace EITC_route_planning.BusinessLogic
 {
     public class ShortestPath
     {
-
+        public void Calculate()
+        {
+            // not implemented
+        }
         public List<CalculatedRoute> calculateKRoutes(City origin, City destination, List<City> cities, List<CachedSection> cachedSections, bool fastest, int k)
         {
             var graph = CreateBidirectionalGraph(cities, cachedSections, fastest);
