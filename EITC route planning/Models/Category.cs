@@ -14,11 +14,7 @@ namespace EITC_route_planning.Models
             Name = name;
         }
 
-        public Category(string name, float priceFactor)
-        {
-            Name = name;
-            PriceFactor = priceFactor;
-        }
+
         public string Name { get; set; }
         public float PriceFactor { get; set; }
 
@@ -27,7 +23,6 @@ namespace EITC_route_planning.Models
             Name = name;
             PriceFactor = priceFactor;
         }
-        public Category() { }
     }
 
 
