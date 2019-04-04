@@ -80,3 +80,6 @@ C:\Users\jachu\Documents\EITC-route-planning\UnitTests\obj\Debug\UnitTests.cspro
 C:\Users\jachu\Documents\EITC-route-planning\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete
 C:\Users\jachu\Documents\EITC-route-planning\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\jachu\Documents\EITC-route-planning\UnitTests\obj\Debug\UnitTests.pdb
+C:\Users\ssc\Documents\CES3\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\ssc\Documents\CES3\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\ssc\Documents\CES3\UnitTests\obj\Debug\UnitTests.pdb

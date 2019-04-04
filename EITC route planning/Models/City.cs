@@ -8,6 +8,10 @@ namespace EITC_route_planning.Models
 {
     public class City
     {
+        public City(string name)
+        {
+            Name = name;
+        }
         public String Name { get; set; }
         public Point Location { get; set; }
     }
