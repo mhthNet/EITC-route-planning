@@ -19,6 +19,11 @@ namespace EITC_route_planning.Controllers
             return View(model);
         }
 
+        public ActionResult RouteOverview()
+        {
+            return View();
+        }
+
         public void createShippment()
         {
             if (HttpContext.Request.RequestType == "POST")

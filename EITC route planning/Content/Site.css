@@ -22,3 +22,12 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.route-type-col {
+    border-right: black solid 1px;
+}
+
+np-y {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}

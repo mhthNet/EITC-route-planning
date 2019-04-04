@@ -53,7 +53,6 @@ namespace EITC_route_planning.Services
 
         public static List<Category> GetAllCategoriesFromDb()
         {
-            //TODO: maybe use key value pairs to also include the category ID?
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
@@ -64,7 +63,6 @@ namespace EITC_route_planning.Services
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    Console.WriteLine("FirstColumn\tSecond Column\t\tThird Column\t\tForth Column\t");
                     while (reader.Read())
                     {
                         Category category = new Category();
