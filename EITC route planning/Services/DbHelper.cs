@@ -75,5 +75,10 @@ namespace EITC_route_planning.Services
                 return categories;
             }
         }
+
+        public static List<WeightGroup> getAllWeightGroups()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
