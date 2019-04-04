@@ -11,20 +11,20 @@ namespace EITC_route_planning.BusinessLogic
 {
     public class RouteCalculator
     {
-        public static CalculatedRoute Calcuate(Category category, float weight, City from, City to)
-        {
-            List<CachedSection> cachedSections = DbCachedSectionLoader.Load(category);
+        //public static CalculatedRoute Calcuate(Category category, float weight, City from, City to)
+        //{
+        //    List<CachedSection> cachedSections = DbCachedSectionLoader.Load(category);
 
-            List<CalculatedRoute> approximatedcalculatedRoutes = ShortestPath.Calculate(cachedSections);
+        //    List<CalculatedRoute> approximatedcalculatedRoutes = ShortestPath.Calculate(cachedSections);
 
-            List<Section> sections = mapToSections(approximatedcalculatedRoutes);
+        //    List<Section> sections = mapToSections(approximatedcalculatedRoutes);
 
-            List<CachedSection> upToDateSections = FetchSections.FetchCachedSections(sections, weight, category);
+        //    List<CachedSection> upToDateSections = FetchSections.FetchCachedSections(sections, weight, category);
 
-            List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.Calculate(upToDateSections);
+        //    List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.Calculate(upToDateSections);
 
-            return exactCalculatedRoutes[0];
-        }
+        //    return exactCalculatedRoutes[0];
+        //}
 
         private static List<Section> mapToSections(List<CalculatedRoute> approximatedcalculatedRoutes)
         {

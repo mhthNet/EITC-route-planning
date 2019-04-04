@@ -10,13 +10,13 @@ namespace EITC_route_planning.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult homePageModel()
+        public void searchRoute()
         {
-            var categories = DbHelper.GetAllCategoriesFromDb();
-            var model = new Shippment();
-            model.categories = categories;
-            
-            return View(model);
+
+        }
+        public ActionResult RouteOverview()
+        {
+            return View();
         }
 
         public void createShippment()
@@ -29,8 +29,6 @@ namespace EITC_route_planning.Controllers
                 var toCity = Request.Form["to"];
             }
 
-            DbHelper.GetAllCities();
-
         }
 
         public void verifyInputs()
@@ -38,15 +36,27 @@ namespace EITC_route_planning.Controllers
 
         }
 
-        public void searchRoute()
-        {
-
-        }
-
         public ActionResult Index()
         {
-            DbHelper.GetAllSectionsFromDb();
-            return View();
+            var categories = DbHelper.GetAllCategoriesFromDb();
+            var model = new Shippment();
+            model.Categories = GetCategoryListItems(categories);
+
+            return View(model);
+        }
+
+        private IEnumerable<SelectListItem> GetCategoryListItems(IEnumerable<Category> elements)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Text = element.Name
+                });
+            }
+
+            return selectList;
         }
 
         public ActionResult About()

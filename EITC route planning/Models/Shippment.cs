@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.Web.WebPages.Html;
+using System.Web.Mvc;
 
 namespace EITC_route_planning.Models
 {
     public class Shippment
     {
-        [Required]
-        [Display(Name = "Weight")]
         public int Weight { get; set; }
+        public Category Category { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
+        public List<City> CitiesFrom { get; set; }
+        public List<City> CitiesTo { get; set; }
 
-        [Required]
-        [Display(Name = "Type of package")]
-        public List<Category> categories { get; set; }
     }
 }
