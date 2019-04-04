@@ -15,7 +15,8 @@ namespace EITC_route_planning.BusinessLogic
         private static int kEstimates = 5;
         public static CalculatedRoute Calculate(Category category, float weight, City from, City to, Boolean fastest=true)
         {
-
+            from.Name = from.Name.ToUpper();
+            to.Name = to.Name.ToUpper();
             var cityNames = DbHelper.GetAllCities().Select(x => x.Name).ToList();
 
             List<CachedSection> cachedSections = DbCachedSectionLoader.Load(category);
