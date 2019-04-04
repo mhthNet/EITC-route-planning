@@ -37,8 +37,23 @@ namespace EITC_route_planning.Controllers
                 shippment.Weight = model.Weight;
                 shippment.CityFrom = model.CityFrom;
                 shippment.CityTo = model.CityTo;
+
+                List<List<Section>> searchedSections = new List<List<Section>>();
+                List<Section> fastSections = new List<Section>();
+                //TODO: use real data, not dummy data
+                fastSections.Add(new Section(new City("city1", 1.0f, 2.0f), new City("city2", 3.0f, 4.0f), 5, new TransportationType("SHIP", 12, 100)));
+                fastSections.Add(new Section(new City("city3", 1.0f, 2.0f), new City("city4", 3.0f, 4.0f), 5, new TransportationType("SHIP", 12, 100)));
+                searchedSections.Add(fastSections);
+
+                shippment.searchedSections = searchedSections;
+
+                shippment.Categories = GetCategoryListItems(categories);
+                shippment.CitiesFrom = GetCityListItems(cities);
+                shippment.CitiesTo = GetCityListItems(cities);
+
+                return View("index", shippment);
             }
-            
+
             return View("index", Model);
         }
 
