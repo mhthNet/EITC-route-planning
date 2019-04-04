@@ -22,7 +22,7 @@ namespace EITC_route_planning.Services
         );
 
 
-        static List<Provider> providers = new List<Provider>()
+        public static List<Provider> Providers = new List<Provider>()
             {
                 Oceanic,
                 Telstar
@@ -31,7 +31,7 @@ namespace EITC_route_planning.Services
         public static List<CachedSection> LoadAllSectionsFromAllProviders(List<SectionRequest> sectionRequests)
         {
             List<CachedSection> result = new List<CachedSection>();
-            foreach (Provider provider in providers)
+            foreach (Provider provider in Providers)
             {
                 var requestsForProvider = sectionRequests.FindAll(x => x.Provider == provider);
                 result.AddRange(LoadAllSectionsFromProvider(requestsForProvider, provider));
@@ -75,7 +75,8 @@ namespace EITC_route_planning.Services
                 data.Price,
                 data.Duration,
                 sectionRequest.Weight,
-                sectionRequest.Category
+                sectionRequest.Category,
+                data.Length
             );
         }
     }

@@ -26,7 +26,7 @@ namespace EITC_route_planning.BusinessLogic
         //    return exactCalculatedRoutes[0];
         //}
 
-        private static List<Section> mapToSections(List<CalculatedRoute> approximatedcalculatedRoutes)
+        private static List<SectionRequest> mapToSectionRequests(List<CalculatedRoute> caldulatedRoutes)
         {
             throw new NotImplementedException();
         }
