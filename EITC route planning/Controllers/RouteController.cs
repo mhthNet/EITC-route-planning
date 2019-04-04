@@ -16,10 +16,10 @@ namespace EITC_route_planning.Controllers
     {
 
         // GET api/<controller>/5 
-        public IHttpActionResult Get(string originName, string destinationName, string parcelType, int weight, int filter)
+        public IHttpActionResult Get(string fromName, string toName, string parcelType, int weight, int filter)
         {
-            if (!DbHelper.GetAllCities().Select(x => x.Name).Contains(originName) ||
-                !DbHelper.GetAllCities().Select(x => x.Name).Contains(destinationName))
+            if (!DbHelper.GetAllCities().Select(x => x.Name).Contains(fromName) ||
+                !DbHelper.GetAllCities().Select(x => x.Name).Contains(toName))
             {
                 throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "One of the specified cities was not found"));
             }
@@ -38,9 +38,9 @@ namespace EITC_route_planning.Controllers
             {
                 return Json(new {});
             }
-            var result = RouteCalculator.CalculateInternalRoute(weight, new Category(parcelType), filter == 1, originName, destinationName);
+            var result = RouteCalculator.CalculateInternalRoute(weight, new Category(parcelType), filter == 1, fromName, toName);
             
-            return Json(new { valid = "true", duration = result.Duration.ToString(), price = result.Price.ToString(), fromName = originName, toName = destinationName });
+            return Json(new { valid = "true", duration = result.Duration.ToString(), price = result.Price.ToString(), fromName = fromName, toName = toName });
         }
 
     }
