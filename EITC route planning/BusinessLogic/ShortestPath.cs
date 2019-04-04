@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using EITC_route_planning.Models;
 
-namespace EITC_route_planning.Services
+namespace EITC_route_planning.BusinessLogic
 {
-    public class DbIntegration
+    public class ShortestPath
     {
-        public List<CalculatedRoute> GetAllSectionsFromDb()
+        public static List<CalculatedRoute> Calculate(List<CachedSection> sec)
         {
             return new List<CalculatedRoute>();
         }

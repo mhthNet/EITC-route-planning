@@ -90,7 +90,6 @@ C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\Microsoft
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\Microsoft.AI.Web.xml
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csprojAssemblyReference.cache
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csproj.CoreCompileInputs.cache
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csproj.CopyComplete
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.dll
@@ -187,7 +186,6 @@ C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\Microsoft.A
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\Microsoft.AI.Web.xml
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csprojAssemblyReference.cache
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csproj.CoreCompileInputs.cache
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csproj.CopyComplete
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.dll

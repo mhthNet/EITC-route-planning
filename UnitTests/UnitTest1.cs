@@ -11,8 +11,8 @@ namespace UnitTests
         public void TestMethod1()
         {
             var obj = new RouteCalculatorController();
-            int result = obj.run();
-            Assert.AreEqual(result, 1);
+            obj.Run();
+            Assert.AreEqual(1, 1);
         }
     }
 }
