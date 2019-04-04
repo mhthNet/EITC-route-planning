@@ -110,6 +110,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestLoadSegemtsToCached.cs" />
+    <Compile Include="UnitTestDbHelper.cs" />
     <Compile Include="UnitTestFetchSections.cs" />
     <Compile Include="ShortestPathTests.cs" />
     <Compile Include="HoffmanPavleyRankedShortestPathAlgorithmTest.cs" />

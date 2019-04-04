@@ -3,48 +3,39 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>East India Trading Company</h1>
+@using (Html.BeginForm("SearchRoute", "Home", FormMethod.Post))
+{
+    <form class="row">
+        <div class="col-sm-6">
+            <label for="weight">Weight (kg)</label>
+            @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
 
-<form class="row">
-    <div class="col-sm-6">
-        <label for="weight">Weight</label>
-        <input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">
-        <small id="weightHelp" class="form-text text-muted">Helpful text</small>
-    </div>
-    <div class="col-sm-6">
-        <label for="typeOfPackage">Type of package</label>
-        <div class="form-group" name="typeOfPackage">
-            @Html.DropDownListFor(m => m.Categories, Model.Categories, "- Please select a state -", new { @class = "form-control" })
+            <!--<input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">-->
         </div>
-
-
-        <small id="typeOfPackageHelp" class="form-text text-muted">Helpful text</small>
-    </div>
+        <div class="col-sm-6">
+            <label for="typeOfPackage">Type of package</label>
+            <div class="form-group" name="typeOfPackage">
+                @Html.DropDownListFor(m => m.Category.Name, Model.Categories, "- Please select a category -", new { @class = "form-control" })
+            </div>
+        </div>
         <div class="col-sm-6">
             <label for="from">From</label>
-            <select name="from" class="form-control" aria-describedby="fromHelp">
-                @for (int i = 0; i < 10; i++)
-                {
-                    <option value=@(i)>@(i)-from</option>
-                }
-            </select>
-            <small id="fromHelp" class="form-text text-muted">Helpful text</small>
+            <div class="form-group" name="cityFrom">
+                @Html.DropDownListFor(m => m.CityFrom, Model.CitiesFrom, "- Please select a city -", new { @class = "form-control" })
+            </div>
         </div>
         <div class="col-sm-6">
             <label for="to">To</label>
-            <select name="to" class="form-control" aria-describedby="toHelp">
-                @for (int i = 0; i < 10; i++)
-                {
-                    <option value=@(i)>@(i)-to</option>
-                }
-            </select>
-            <small id="toHelp" class="form-text text-muted">Helpful text</small>
+            <div class="form-group" name="cityTo">
+                @Html.DropDownListFor(m => m.CityTo, Model.CitiesTo, "- Please select a city -", new { @class = "form-control" })
+            </div>
         </div>
 
         <div class="col-sm-12">
-            <button type="submit" class="btn btn-default">Search</button>
+            <input type="submit" value="Submit" />
         </div>
-</form>
+    </form>
+}
 
 <br />
 
@@ -52,31 +43,34 @@
 
 <br />
 
-<div class="list-group">
-    <a href="/overview" class="list-group-item">
-        <div class="row">
-            <div class="col-xs-4">
-                <h4>Fastest Route</h4>
-            </div>
-            <div class="col-xs-8">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <strong>From:</strong> x
+@if (Model.searchedSections != null)
+{
+    <div class="list-group">
+        <a href="/overview" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h4>Fastest Route</h4>
+                </div>
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>From:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].From.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Duration:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].Length
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        <strong>Duration:</strong> x
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>To:</strong> @Model.searchedSections.ToArray()[0].ToArray()[1].To.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Cost:</strong> @Model.searchedSections.ToArray()[0].ToArray()[0].
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <strong>To:</strong> x
-                    </div>
-                    <div class="col-xs-6">
-                        <strong>Cost:</strong> x
-                    </div>
-                </div>
             </div>
-        </div>
-    </a>
-    <a href="#" class="list-group-item">Cheapest route: </a>
-</div>
+        </a>
+        <a href="#" class="list-group-item">Cheapest route: </a>
+    </div>
+}
