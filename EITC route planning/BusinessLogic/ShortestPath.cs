@@ -9,13 +9,13 @@ using QuickGraph.Algorithms.RankedShortestPath;
 
 namespace EITC_route_planning.BusinessLogic
 {
-    public class ShortestPath
+    public static class ShortestPath
     {
-        public void Calculate()
+        public static void Calculate()
         {
             // not implemented
         }
-        public List<CalculatedRoute> calculateKRoutes(string origin, string destination, List<string> cities, List<CachedSection> cachedSections, bool fastest, int k)
+        public static List<CalculatedRoute> calculateKRoutes(string origin, string destination, List<string> cities, List<CachedSection> cachedSections, bool fastest, int k)
         {
             var graph = CreateBidirectionalGraph(cities, cachedSections, fastest);
 
