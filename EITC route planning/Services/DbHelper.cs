@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -41,10 +42,16 @@ namespace EITC_route_planning.Services
                         
                         cityFrom = new City(name, xLocation, yLocation);
                         name = reader[1].ToString();
+                        
                         xLocation = float.Parse(reader[9].ToString());
                         yLocation = float.Parse(reader[10].ToString());
                         length = (int) reader[5];
-                        
+                        System.Diagnostics.Debug.WriteLine("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
+                        System.Diagnostics.Debug.WriteLine(name);
+                        System.Diagnostics.Debug.WriteLine(xLocation);
+                        System.Diagnostics.Debug.WriteLine(yLocation);
+                        System.Diagnostics.Debug.WriteLine(length);
+
                     }
                     reader.Close();
                 }
@@ -78,8 +85,9 @@ namespace EITC_route_planning.Services
                 }       
                         
                 sections.Add(section);
-                    
-                
+                System.Diagnostics.Debug.WriteLine("TESTING!!!!!!!!!!!!!!!!!!");
+                System.Diagnostics.Debug.WriteLine(sections[0].From.Name);
+
                 return sections;
             }
         }
@@ -115,9 +123,40 @@ namespace EITC_route_planning.Services
             throw new NotImplementedException();
         }
 
-        public static void SaveCachedSections(List<CachedSection>cachedSections)
+        public static void SaveCachedSections(List<CachedSection> cachedSections)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO dbo.CachedSection(id, price, duration, fromCity, toCity, provider, weight, category_name) VALUES(@ID, @Price, @Duration, @FromCity, @ToCity, @Provider, @Weight, @Category)", conn);
+
+                List<City> cities = new List<City>();
+                
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters.Add("@Price", SqlDbType.Text);
+                command.Parameters.Add("@Duration", SqlDbType.Float);
+                command.Parameters.Add("@FromCity", SqlDbType.Text);
+                command.Parameters.Add("@ToCity", SqlDbType.Text);
+                command.Parameters.Add("@Provider", SqlDbType.Text);
+                command.Parameters.Add("@Weight", SqlDbType.Float);
+                command.Parameters.Add("@Cateogry", SqlDbType.Text);
+
+                for (int i = 0; i < cachedSections.Count; i++)
+                {
+                    command.Parameters["@ID"].Value = i + 1;
+                    command.Parameters["@Price"].Value = cachedSections[i].Price;
+                    command.Parameters["@Duration"].Value = cachedSections[i].Duration;
+                    command.Parameters["@FromCity"].Value = cachedSections[i].From.Name;
+                    command.Parameters["@ToCity"].Value = cachedSections[i].To.Name;
+                    command.Parameters["@Provider"].Value = cachedSections[i].Provider;
+                    command.Parameters["@Weight"].Value = cachedSections[i].Weight;
+                    command.Parameters["@Category"].Value = cachedSections[i].Category.Name;
+                    
+                    command.ExecuteNonQuery();
+                }
+                
+            }
         }
 
         public static List<TransportationType> getAllTransportationTypes()
