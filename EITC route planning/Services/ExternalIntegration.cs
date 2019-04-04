@@ -73,7 +73,7 @@ namespace EITC_route_planning.Services
             IRestResponse<ExternalInterfaceCommand> cachedSection = client.Execute<ExternalInterfaceCommand>(request);
 
             var data = cachedSection.Data;
-            return new CachedSection(
+            var newCachedSection = new CachedSection(
                 sectionRequest.From, 
                 sectionRequest.To,
                 data.Price,
@@ -82,6 +82,9 @@ namespace EITC_route_planning.Services
                 sectionRequest.Category,
                 ""
             );
+            newCachedSection.From.Name = newCachedSection.From.Name.ToUpper();
+            newCachedSection.To.Name = newCachedSection.To.Name.ToUpper();
+            return newCachedSection;
         }
     }
 }

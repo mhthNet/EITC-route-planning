@@ -202,6 +202,7 @@
     <Compile Include="BusinessLogic\RouteCalculator.cs" />
     <Compile Include="BusinessLogic\ShortestPath.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\RouteCalculatorController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Global.asax.cs">
