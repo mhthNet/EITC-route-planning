@@ -7,6 +7,8 @@ namespace EITC_route_planning.Models
 {
     public class Section
     {
+        public Section() { }
+
         public Section(City cityFrom, City cityTo, int length, TransportationType transportType)
         {
             From = cityFrom;

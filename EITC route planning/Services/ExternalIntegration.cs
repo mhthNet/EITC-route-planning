@@ -23,13 +23,12 @@ namespace EITC_route_planning.Services
                 )
             };
 
-        public List<CachedSection> LoadAllSectionsFromAllExternals(List<SectionRequest> sectionRequests, EternalIntegrationConnections conn)
+        public static List<CachedSection> LoadAllSectionsFromAllExternals(List<SectionRequest> sectionRequests, EternalIntegrationConnections conn)
         {
             return sectionRequests.Select(s => LoadSectionFromExternal(conn, s)).ToList();
         }
 
-        private 
-            
+       
         private static CachedSection LoadSectionFromExternal(EternalIntegrationConnections externalConnection, SectionRequest sectionRequest)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>()
@@ -40,12 +39,7 @@ namespace EITC_route_planning.Services
                 {"weight", sectionRequest.Weight.ToString() }
             };
 
-            return ApiGetSectionRequest(externalConnection.Endpoint, parameters);
-        }
-
-        private static CachedSection ApiGetSectionRequest(string endpoint, Dictionary<String, String> parameters)
-        {
-            var client = new RestClient(endpoint);
+            var client = new RestClient(externalConnection.Endpoint);
 
             var request = new RestRequest("routes/get", Method.GET);
             foreach (KeyValuePair<string, string> entry in parameters)
@@ -56,11 +50,19 @@ namespace EITC_route_planning.Services
             // execute the request
             IRestResponse response = client.Execute(request);
             var content = response.Content; // raw content as string
-     
+
             // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
             IRestResponse<CachedSection> cachedSection = client.Execute<CachedSection>(request);
 
-            return new CachedSection();
+            var data = cachedSection.Data;
+            return new CachedSection(
+                sectionRequest.From, 
+                sectionRequest.To,
+                data.Price,
+                data.Duration,
+                sectionRequest.Weight,
+                sectionRequest.Category
+            );
         }
     }
 }
