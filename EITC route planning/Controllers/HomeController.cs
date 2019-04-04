@@ -12,6 +12,15 @@ namespace EITC_route_planning.Controllers
     {
         public void searchRoute()
         {
+
+        }
+        public ActionResult RouteOverview()
+        {
+            return View();
+        }
+
+        public void createShippment()
+        {
             if (HttpContext.Request.RequestType == "POST")
             {
                 var weight = Request.Form["id"];
@@ -38,18 +47,11 @@ namespace EITC_route_planning.Controllers
 
         private IEnumerable<SelectListItem> GetCategoryListItems(IEnumerable<Category> elements)
         {
-            // Create an empty list to hold result of the operation
             var selectList = new List<SelectListItem>();
-
-            // For each string in the 'elements' variable, create a new SelectListItem object
-            // that has both its Value and Text properties set to a particular value.
-            // This will result in MVC rendering each item as:
-            //     <option value="State Name">State Name</option>
             foreach (var element in elements)
             {
                 selectList.Add(new SelectListItem
                 {
-                    //Value = element,
                     Text = element.Name
                 });
             }

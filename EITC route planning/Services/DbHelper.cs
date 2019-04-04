@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using EITC_route_planning.Models;
@@ -15,6 +16,31 @@ namespace EITC_route_planning.Services
             throw new NotImplementedException();
         }
 
+        public static List<City> GetAllCities()
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Cities", conn);
+
+                List<City> cities = new List<City>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        City city = new City();
+                        city.Name = reader[1].ToString();
+                        city.Location = new Point((int) reader[2], (int) reader[3]);
+                        cities.Add(city);
+                    }
+                }
+
+                return cities;
+            }
+        }
+
         public static List<CachedSection> GetAllCachedSectionsFromDb()
         {
             throw new NotImplementedException();
@@ -27,7 +53,6 @@ namespace EITC_route_planning.Services
 
         public static List<Category> GetAllCategoriesFromDb()
         {
-            //TODO: maybe use key value pairs to also include the category ID?
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
@@ -38,12 +63,11 @@ namespace EITC_route_planning.Services
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    Console.WriteLine("FirstColumn\tSecond Column\t\tThird Column\t\tForth Column\t");
                     while (reader.Read())
                     {
                         Category category = new Category();
                         category.Name = reader[1].ToString();
-                        category.PriceFactor = 1.0f; //TODO: fix
+                        category.PriceFactor = (float) reader[2]; 
                         categories.Add(category);
                     }
                 }

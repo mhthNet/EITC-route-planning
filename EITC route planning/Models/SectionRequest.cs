@@ -5,10 +5,10 @@ using System.Web;
 
 namespace EITC_route_planning.Models
 {
-    public class CachedSection : CalculatedRoute
+    public class SectionRequest
     {
-        public decimal Price { get; set; }
-        public float Duration { get; set; }
+        public City From { get; set; }
+        public City To { get; set; }
         public float Weight { get; set; }
         public Category Category { get; set; }
     }
