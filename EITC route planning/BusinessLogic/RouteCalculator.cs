@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -20,16 +21,21 @@ namespace EITC_route_planning.BusinessLogic
             var cityNames = DbHelper.GetAllCities().Select(x => x.Name).ToList();
 
             List<CachedSection> cachedSections = DbCachedSectionLoader.Load(category);
-
+            
             if (cachedSections.Count == 0)
             {
                 DbRouteUpdater.Update();
                 cachedSections = DbCachedSectionLoader.Load(category);
             }
+            cachedSections = removeCityRuleViolations(cachedSections, category);
 
             List<CalculatedRoute> approximatedcalculatedRoutes =
                 ShortestPath.calculateKRoutes(from.Name, to.Name, cityNames, cachedSections, fastest, kEstimates);
-            List<SectionRequest> sections = CalculatedRouteToSectionRequests(approximatedcalculatedRoutes);
+            if (approximatedcalculatedRoutes.Count == 0)
+            {
+                throw new NoPathFoundException();
+            }
+            List<SectionRequest> sections = CalculatedRouteToSectionRequests(approximatedcalculatedRoutes, weight);
 
             List<CachedSection> upToDateSections = FetchSections.FetchInternCachedSections(weight, category);
             upToDateSections.AddRange(FetchSections.FetchExternCachedSections(sections));
@@ -37,7 +43,17 @@ namespace EITC_route_planning.BusinessLogic
             List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.calculateKRoutes(from.Name, to.Name, cityNames, upToDateSections, fastest, 1);
             if (exactCalculatedRoutes.Count == 0)
             {
-                throw new NoPathFoundException();
+                List<SectionRequest> sectionRequests = ExternalCachedSectionToSectionRequests(cachedSections, weight);
+                List<CachedSection> allUpToDateSections = FetchSections.FetchInternCachedSections(weight, category);
+                allUpToDateSections.AddRange(FetchSections.FetchExternCachedSections(sectionRequests));
+                allUpToDateSections = removeCityRuleViolations(allUpToDateSections, category);
+                var slowExactCalculatedRoutes =
+                    ShortestPath.calculateKRoutes(from.Name, to.Name, cityNames, allUpToDateSections, fastest, 1);
+                if (slowExactCalculatedRoutes.Count == 0)
+                {
+                    throw new NoPathFoundException();
+                }
+                return slowExactCalculatedRoutes[0];
             }
             return exactCalculatedRoutes[0];
         }
@@ -57,7 +73,7 @@ namespace EITC_route_planning.BusinessLogic
             return routes[0];
         }
 
-        private static List<SectionRequest> CalculatedRouteToSectionRequests(List<CalculatedRoute> calculatedRoutes)
+        private static List<SectionRequest> CalculatedRouteToSectionRequests(List<CalculatedRoute> calculatedRoutes, float weight)
         {
             List<SectionRequest> converted = new List<SectionRequest>();
             foreach (CalculatedRoute calculatedRoute in calculatedRoutes)
@@ -68,7 +84,7 @@ namespace EITC_route_planning.BusinessLogic
                         calculatedRoute.Route.Select(x => new SectionRequest(
                             x.From,
                             x.To,
-                            x.Weight,
+                            weight,
                             x.Category,
                             ExternalIntegration.Providers.Find(y => y.Name == x.Provider)
                         ))
@@ -76,6 +92,47 @@ namespace EITC_route_planning.BusinessLogic
                 }
             }
             return converted;
+        }
+
+        private static List<SectionRequest> ExternalCachedSectionToSectionRequests(
+            List<CachedSection> cachedSections, float weight)
+        {
+            List<SectionRequest> converted = new List<SectionRequest>();
+            foreach (var cachedSection in cachedSections)
+            {
+                if (cachedSection.Provider != "EastIndia")
+                {
+                    foreach (Provider provider in ExternalIntegration.Providers)
+                    {
+                        converted.Add(new SectionRequest(
+                            cachedSection.From,
+                            cachedSection.To,
+                            weight,
+                            cachedSection.Category,
+                            ExternalIntegration.Providers.Find(y => y.Name == cachedSection.Provider))
+                        );
+                    }
+                }
+
+            }
+            return converted;
+        }
+
+        private static List<CachedSection> removeCityRuleViolations(List<CachedSection> cachedSections, Category category)
+        {
+            var restrictedCities = new List<string>();
+            restrictedCities.Add("Hvalbugten");
+            restrictedCities.Add("Kapstaden");
+            var restrictedCategories = new List<string>();
+            restrictedCategories.Add("Weapons");
+            restrictedCategories.Add("Live Animals");
+            if (restrictedCategories.Contains(category.Name))
+            {
+                return cachedSections.Where(x =>
+                    restrictedCities.Contains(x.From.Name)
+                    || restrictedCities.Contains(x.To.Name)).ToList();
+            }
+            return cachedSections;
         }
     }
 }

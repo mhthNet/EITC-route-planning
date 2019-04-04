@@ -51,7 +51,7 @@ namespace EITC_route_planning.Services
 
             WeightGroup weightGroup = weightGroups
                 .OrderByDescending(it => it.MaxWeight)
-                .First(it => it.MaxWeight < weight);
+                .First(it => it.MaxWeight > weight);
             return weightGroup.Price * (decimal)category.PriceFactor;
         }
     }

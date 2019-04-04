@@ -21,6 +21,10 @@ namespace EITC_route_planning.Services
             "http://wa-oadk.azurewebsites.net/api/route"
         );
 
+        public static Provider EastIndia = new Provider(
+            "EastIndia",
+            "EastIndia.com/api");
+
 
         public static List<Provider> Providers = new List<Provider>()
             {

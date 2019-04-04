@@ -287,7 +287,7 @@ namespace EITC_route_planning.Services
             {
                 new WeightGroup(10, 5),
                 new WeightGroup(50, 6),
-                new WeightGroup(100, 8)
+                new WeightGroup(101, 8)
             };
         }
     }
