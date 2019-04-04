@@ -21,6 +21,10 @@ namespace EITC_route_planning.Services
             "Oceanic.com/api/"
         );
 
+        public static Provider EastIndia = new Provider(
+            "EastIndia",
+            "EastIndia.com/api");
+
 
         public static List<Provider> Providers = new List<Provider>()
             {
