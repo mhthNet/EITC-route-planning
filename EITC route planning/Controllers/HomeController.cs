@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EITC_route_planning.BusinessLogic;
 using EITC_route_planning.Models;
 using EITC_route_planning.Services;
 
@@ -37,6 +38,17 @@ namespace EITC_route_planning.Controllers
                 shippment.Weight = model.Weight;
                 shippment.CityFrom = model.CityFrom;
                 shippment.CityTo = model.CityTo;
+
+                CalculatedRoute calculatedRoute = null;
+                try
+                {
+                    calculatedRoute = RouteCalculator.Calculate(model.Category, model.Weight,
+                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityFrom), true);
+                }
+                catch (Exception e)
+                {
+                    
+                }
 
                 List<List<Section>> searchedSections = new List<List<Section>>();
                 List<Section> fastSections = new List<Section>();

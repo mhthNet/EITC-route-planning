@@ -35,7 +35,7 @@ namespace EITC_route_planning.Models
             To = cityTo;
         }
 
-        public CachedSection(City from, City to, Decimal price, float duration, float weight, Category category, int length)
+        public CachedSection(City from, City to, Decimal price, float duration, float weight, Category category, string provider)
         {
             Price = price;
             Duration = duration;
@@ -43,7 +43,7 @@ namespace EITC_route_planning.Models
             Category = category;
             From = from;
             To = to;
-            Length = length;
+            Provider = provider;
         }
     }
 
