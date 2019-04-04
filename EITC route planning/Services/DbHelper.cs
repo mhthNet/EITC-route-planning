@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using EITC_route_planning.Models;
@@ -15,9 +16,29 @@ namespace EITC_route_planning.Services
             throw new NotImplementedException();
         }
 
-        internal static List<City> GetAllCities()
+        public static List<City> GetAllCities()
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Cities", conn);
+
+                List<City> cities = new List<City>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        City city = new City();
+                        city.Name = reader[1].ToString();
+                        city.Location = new Point((int) reader[2], (int) reader[3]);
+                        cities.Add(city);
+                    }
+                }
+
+                return cities;
+            }
         }
 
         public static List<CachedSection> GetAllCachedSectionsFromDb()
@@ -48,7 +69,7 @@ namespace EITC_route_planning.Services
                     {
                         Category category = new Category();
                         category.Name = reader[1].ToString();
-                        category.PriceFactor = 1.0f; //TODO: fix
+                        category.PriceFactor = (float) reader[2]; 
                         categories.Add(category);
                     }
                 }
