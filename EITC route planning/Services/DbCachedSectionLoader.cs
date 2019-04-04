@@ -8,7 +8,7 @@ namespace EITC_route_planning.Services
 {
     public class DbCachedSectionLoader
     {
-        public List<CachedSection> Load(Category category)
+        public static List<CachedSection> Load(Category category)
         {
             return new List<CachedSection>();
         }
