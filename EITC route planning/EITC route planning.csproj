@@ -160,14 +160,29 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BusinessLogic\RouteCalculator.cs" />
+    <Compile Include="BusinessLogic\ShortestPath.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RouteCalculatorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CachedSection.cs" />
+    <Compile Include="Models\CalculatedRoute.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\TransportationType.cs" />
+    <Compile Include="Models\WeightGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DbHelper.cs" />
+    <Compile Include="Services\DbCachedSectionLoader.cs" />
+    <Compile Include="Services\DbRouteUpdater.cs" />
+    <Compile Include="Services\ExternalIntegration.cs" />
+    <Compile Include="Services\FetchSections.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
@@ -212,7 +227,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\RouteCalculator\" />
   </ItemGroup>
   <ItemGroup>
