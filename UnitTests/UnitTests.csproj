@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="UnitTestFetchSections.cs" />
     <Compile Include="ShortestPathTests.cs" />
+    <Compile Include="HoffmanPavleyRankedShortestPathAlgorithmTest.cs" />
     <Compile Include="UnitTestExternalIntegration.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
