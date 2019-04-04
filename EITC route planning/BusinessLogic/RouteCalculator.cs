@@ -15,27 +15,27 @@ namespace EITC_route_planning.BusinessLogic
         //{
         //    List<CachedSection> cachedSections = DbCachedSectionLoader.Load(category);
 
-        //    List<CalculatedRoute> approximatedcalculatedRoutes = ShortestPath.Calculate(cachedSections);
+        //    //List<CalculatedRoute> approximatedcalculatedRoutes = ShortestPath.Calculate(cachedSections);
 
-        //    List<Section> sections = mapToSections(approximatedcalculatedRoutes);
+        //    //List<Section> sections = CalculatedRouteToSectionRequests(approximatedcalculatedRoutes);
 
-        //    List<CachedSection> upToDateSections = FetchSections.FetchCachedSections(sections, weight, category);
+        //    //List<CachedSection> upToDateSections = FetchSections.FetchCachedSections(sections, weight, category);
 
-        //    List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.Calculate(upToDateSections);
+        //    //List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.Calculate(upToDateSections);
 
-        //    return exactCalculatedRoutes[0];
+        //    //return exactCalculatedRoutes[0];
         //}
 
-        static void CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
+        static CalculatedRoute CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
         {
             var cachedSections = FetchSections.FetchInternCachedSections(weight, category);
             var cities = DbHelper.GetAllCities().Select(x => x.Name).ToList();
-            var route = ShortestPath.calculateKRoutes(origin, destination, cities, cachedSections, fastest, 1);
+            var routes = ShortestPath.calculateKRoutes(origin, destination, cities, cachedSections, fastest, 1);
             // Calculate total price and just do start/finish in response. Convert it to Json
-            throw new NotImplementedException();
+            return routes[0];
         }
 
-        private static List<SectionRequest> mapToSectionRequests(List<CalculatedRoute> caldulatedRoutes)
+        private static List<SectionRequest> CalculatedRouteToSectionRequests(List<CalculatedRoute> calculatedRoutes)
         {
             throw new NotImplementedException();
         }
