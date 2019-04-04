@@ -24,6 +24,5 @@ namespace EITC_route_planning.Models
         public String Name { get; set; }
         public float XLocation { get; set; }
         public float YLocation { get; set; }
-
     }
 }
