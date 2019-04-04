@@ -13,12 +13,12 @@ namespace EITC_route_planning.Services
     {
         public static Provider Telstar = new Provider(
             "Telstar Logistics",
-            "Telstar.com/api/"
+            "http://wa-tldk.azurewebsites.net/api/route"
         );
 
         public static Provider Oceanic = new Provider(
-            "Oceanic",
-            "Oceanic.com/api/"
+            "Oceanic Airlines",
+            "http://wa-oadk.azurewebsites.net/api/route"
         );
 
 
@@ -43,7 +43,7 @@ namespace EITC_route_planning.Services
         {
             return sectionRequests.Select(s => LoadSectionFromExternal(provider, s)).ToList();
         }
-        private static CachedSection LoadSectionFromExternal(Provider externalConnection, SectionRequest sectionRequest)
+        private static CachedSection LoadSectionFromExternal(Provider provider, SectionRequest sectionRequest)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>()
             {
@@ -53,9 +53,9 @@ namespace EITC_route_planning.Services
                 {"weight", sectionRequest.Weight.ToString() }
             };
 
-            var client = new RestClient(externalConnection.Endpoint);
+            var client = new RestClient(provider.Endpoint);
 
-            var request = new RestRequest("routes", Method.GET);
+            var request = new RestRequest("", Method.GET);
             foreach (KeyValuePair<string, string> entry in parameters)
             {
                 request.AddParameter(entry.Key, entry.Value);
@@ -66,7 +66,7 @@ namespace EITC_route_planning.Services
             var content = response.Content; // raw content as string
 
             // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
-            IRestResponse<CachedSection> cachedSection = client.Execute<CachedSection>(request);
+            IRestResponse<ExternalInterfaceCommand> cachedSection = client.Execute<ExternalInterfaceCommand>(request);
 
             var data = cachedSection.Data;
             return new CachedSection(
