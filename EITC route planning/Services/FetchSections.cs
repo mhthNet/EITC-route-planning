@@ -16,18 +16,11 @@ namespace EITC_route_planning.Services
         }
         public static List<CachedSection> FetchInternCachedSections(float weight, Category category)
         {
-            return GetAllOwnAsCachedSections(weight, category);
-        }
-
-        private static List<CachedSection> GetAllOwnAsCachedSections(float weight, Category category)
-        {
-            // get own 
             List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
 
-            List<CachedSection> ownAsCachedSections = ownSections.Select(
-                x =>CalculateCachedSegment(x, weight, category)
-                ).ToList();
-            return ownAsCachedSections;
+            return ownSections.Select(
+                x => CalculateCachedSegment(x, weight, category)
+            ).ToList();
         }
 
         private static CachedSection CalculateCachedSegment(Section section, float weight, Category category)
@@ -45,6 +38,9 @@ namespace EITC_route_planning.Services
 
         private static float CalculateDuration(Section section)
         {
+            float speed = 12; //section.TransportationType.Speed
+            return speed * section.Length;
+
             return section.TransportationType.Speed * section.Length;
         }
 
