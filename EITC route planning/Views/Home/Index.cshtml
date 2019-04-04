@@ -1,31 +1,81 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<h1>East India Trading Company</h1>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<form class="row">
+    <div class="col-sm-6">
+        <label for="weight">Weight</label>
+        <input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">
+        <small id="weightHelp" class="form-text text-muted">Helpful text</small>
+    </div>
+    <div class="col-sm-6">
+        <label for="typeOfPackage">Type of package</label>
+        <select name="typeOfPackage" class="form-control" aria-describedby="typeOfPackageHelp">
+            @for (int i = 0; i < 10; i++)
+            {
+                <option value=@(i)>@(i)-option</option>
+            }
+        </select>
+        <small id="typeOfPackageHelp" class="form-text text-muted">Helpful text</small>
+    </div>
+    <div class="col-sm-6">
+        <label for="from">From</label>
+        <select name="from" class="form-control" aria-describedby="fromHelp">
+            @for (int i = 0; i < 10; i++)
+            {
+                <option value=@(i)>@(i)-from</option>
+            }
+        </select>
+        <small id="fromHelp" class="form-text text-muted">Helpful text</small>
+    </div>
+    <div class="col-sm-6">
+        <label for="to">To</label>
+        <select name="to" class="form-control" aria-describedby="toHelp">
+            @for (int i = 0; i < 10; i++)
+            {
+                <option value=@(i)>@(i)-to</option>
+            }
+        </select>
+        <small id="toHelp" class="form-text text-muted">Helpful text</small>
+    </div>
+    
+    <div class="col-sm-12">
+        <button type="submit" class="btn btn-default">Search</button>
+    </div>
+</form>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<br />
+
+<img src="http://3.bp.blogspot.com/-moi6Kgo0YRg/UVOAn63VKcI/AAAAAAAADxM/lINGO-IXeTA/s1600/Spel,%20Den%20f%C3%B6rsvunna%20diamanten.%20Fr%C3%A5n%20slutet%20av%201990-talet%20(2).JPG" alt="Map of Africa" style="width: 35%; display: block; margin-left: auto; margin-right: auto;">
+
+<br />
+
+<div class="list-group">
+    <a href="#" class="list-group-item">
+        <div class="row">
+            <div class="col-xs-4">
+                <h4>Fastest Route</h4>
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>From:</strong> x
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>Duration:</strong> x
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>To:</strong> x
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>Cost:</strong> x
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="#" class="list-group-item">Cheapest route: </a>
 </div>
