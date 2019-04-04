@@ -124,3 +124,23 @@ C:\Users\ssc\Documents\CES3\UnitTests\bin\Debug\System.Web.Http.xml
 C:\Users\ssc\Documents\CES3\UnitTests\bin\Debug\YC.QuickGraph.xml
 C:\Users\ssc\Documents\CES3\UnitTests\bin\Debug\System.Web.Http.WebHost.xml
 C:\Users\ssc\Documents\CES3\UnitTests\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\DotParser.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharp.Core.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Collections.Experimental.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Core.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\RestSharp.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.Data.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.FSA.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.FST.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.Glee.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.Graphviz.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.Petri.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraphFS.dll
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharp.Core.xml
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Collections.Experimental.pdb
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Collections.Experimental.xml
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Core.pdb
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\FSharpx.Core.xml
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\RestSharp.xml
+C:\Users\mhth\source\repos\EITC route planning\UnitTests\bin\Debug\YC.QuickGraph.xml
