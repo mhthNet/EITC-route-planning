@@ -41,7 +41,6 @@ namespace EITC_route_planning.Controllers
             var categories = DbHelper.GetAllCategoriesFromDb();
             var model = new Shippment();
             model.Categories = GetCategoryListItems(categories);
-
             return View(model);
         }
 

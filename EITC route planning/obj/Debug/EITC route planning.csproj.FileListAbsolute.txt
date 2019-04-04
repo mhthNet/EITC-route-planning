@@ -289,3 +289,24 @@ C:\Users\ssc\Documents\CES3\EITC route planning\bin\Microsoft.AI.DependencyColle
 C:\Users\ssc\Documents\CES3\EITC route planning\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\ssc\Documents\CES3\EITC route planning\bin\Microsoft.AI.Web.xml
 C:\Users\ssc\Documents\CES3\EITC route planning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csprojAssemblyReference.cache
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\DotParser.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharp.Core.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Collections.Experimental.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Core.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\RestSharp.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.Data.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.FSA.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.FST.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.Glee.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.Graphviz.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.Petri.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraphFS.dll
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharp.Core.xml
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Collections.Experimental.pdb
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Collections.Experimental.xml
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Core.pdb
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\FSharpx.Core.xml
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\RestSharp.xml
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\bin\YC.QuickGraph.xml
