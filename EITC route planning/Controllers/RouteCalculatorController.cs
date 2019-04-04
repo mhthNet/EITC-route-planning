@@ -13,7 +13,7 @@ namespace EITC_route_planning.Controllers
         // GET: RouteCalculator
         public void Run()
         {
-            RouteCalculator.Calcuate(new Category(), 1, new City(), new City());
+            var result = RouteCalculator.Calcuate(new Category(), 1, new City(), new City());
         }
     }
 }
