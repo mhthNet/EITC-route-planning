@@ -10,25 +10,33 @@ namespace EITC_route_planning.Controllers
 {
     public class HomeController : Controller
     {
-        public void searchRoute()
-        {
-
-        }
         public ActionResult RouteOverview()
         {
             return View();
         }
 
-        public void createShippment()
+        [HttpPost]
+        public ActionResult SearchRoute(Shippment model)
         {
-            if (HttpContext.Request.RequestType == "POST")
-            {
-                var weight = Request.Form["id"];
-                var packageType = Request.Form["type"];
-                var fromCity = Request.Form["from"];
-                var toCity = Request.Form["to"];
-            }
+            var shippment = new Shippment();
+            var Model = new Shippment();
 
+            var categories = DbHelper.GetAllCategoriesFromDb();
+            Model.Categories = GetCategoryListItems(categories);
+
+            var cities = DbHelper.GetAllCities();
+            Model.CitiesFrom = GetCityListItems(cities);
+            Model.CitiesTo = GetCityListItems(cities);
+
+            if (ModelState.IsValid)
+            {
+                shippment.Category = model.Category;
+                shippment.Weight = model.Weight;
+                shippment.CityFrom = model.CityFrom;
+                shippment.CityTo = model.CityTo;
+            }
+            
+            return View("index", Model);
         }
 
         public void verifyInputs()
@@ -76,5 +84,7 @@ namespace EITC_route_planning.Controllers
 
             return selectList;
         }
+
+
     }
 }

@@ -4,39 +4,39 @@
     ViewBag.Title = "Home Page";
 }
 <h1>East India Trading Company</h1>
+@using (Html.BeginForm("SearchRoute", "Home", FormMethod.Post))
+{
+    <form class="row">
+        <div class="col-sm-6">
+            <label for="weight">Weight</label>
+            @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
 
-<form class="row">
-    <div class="col-sm-6">
-        <label for="weight">Weight</label>
-        <input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">
-        <small id="weightHelp" class="form-text text-muted">Helpful text</small>
-    </div>
-    <div class="col-sm-6">
-        <label for="typeOfPackage">Type of package</label>
-        <div class="form-group" name="typeOfPackage">
-            @Html.DropDownListFor(m => m.Categories, Model.Categories, "- Please select a category -", new { @class = "form-control" })
+            <!--<input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">-->
         </div>
-        <small id="typeOfPackageHelp" class="form-text text-muted">Helpful text</small>
-    </div>
-    <div class="col-sm-6">
-        <label for="from">From</label>
-        <div class="form-group" name="cityFrom">
-            @Html.DropDownListFor(m => m.CitiesFrom, Model.CitiesFrom, "- Please select a city -", new { @class = "form-control" })
+        <div class="col-sm-6">
+            <label for="typeOfPackage">Type of package</label>
+            <div class="form-group" name="typeOfPackage">
+                @Html.DropDownListFor(m => m.Category.Name, Model.Categories, "- Please select a category -", new { @class = "form-control" })
+            </div>
         </div>
-        <small id="fromHelp" class="form-text text-muted">Helpful text</small>
-    </div>
-    <div class="col-sm-6">
-        <label for="to">To</label>
-        <div class="form-group" name="cityTo">
-            @Html.DropDownListFor(m => m.CitiesTo, Model.CitiesFrom, "- Please select a city -", new { @class = "form-control" })
+        <div class="col-sm-6">
+            <label for="from">From</label>
+            <div class="form-group" name="cityFrom">
+                @Html.DropDownListFor(m => m.CityFrom, Model.CitiesFrom, "- Please select a city -", new { @class = "form-control" })
+            </div>
         </div>
-        <small id="toHelp" class="form-text text-muted">Helpful text</small>
-    </div>
+        <div class="col-sm-6">
+            <label for="to">To</label>
+            <div class="form-group" name="cityTo">
+                @Html.DropDownListFor(m => m.CityTo, Model.CitiesTo, "- Please select a city -", new { @class = "form-control" })
+            </div>
+        </div>
 
         <div class="col-sm-12">
-            <button type="submit" class="btn btn-default">Search</button>
+            <input type="submit" value="Submit" />
         </div>
-</form>
+    </form>
+}
 
 <br />
 
