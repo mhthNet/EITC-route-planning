@@ -13,11 +13,12 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod1()
         {
+            DbHelper.ClearAllCachedSectionsFromDb();
             List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
             List<CachedSection> cached = FetchSections.FetchInternCachedSections(2, new Category("new", 1));
             DbHelper.SaveCachedSections(cached);
-
             var readout = DbHelper.GetAllCachedSectionsFromDb();
+            
             
             Assert.AreEqual(readout, cached);
         }

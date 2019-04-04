@@ -133,7 +133,7 @@ namespace EITC_route_planning.Services
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
                 conn.Open();
 
-                SqlCommand commandSections = new SqlCommand("SELECT * FROM CachedSection");
+                SqlCommand commandSections = new SqlCommand("SELECT * FROM CachedSection", conn);
                 List<CachedSection> cachedSections = new List<CachedSection>();
 
                 using (SqlDataReader reader = commandSections.ExecuteReader())
@@ -155,15 +155,26 @@ namespace EITC_route_planning.Services
 
                         string categoryName = reader[7].ToString();
                         Category category = GetCategoryByName(categoryName);
-
-                        CachedSection cachedSection = new CachedSection(from, to, price, duration, weight, category, length);
-                        cachedSection.Provider = provider;
-                        cachedSection.Id = cachedSectionId;
+                        
+                        CachedSection cachedSection = new CachedSection(from, to, price, duration, weight, category, provider);
+                        cachedSection.Provider = provider == null ? "" : provider;
 
                         cachedSections.Add(cachedSection);
                     }
                 }
                 return cachedSections;
+            }
+        }
+
+        public static void ClearAllCachedSectionsFromDb()
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+
+                SqlCommand commandSections = new SqlCommand("DELETE FROM CachedSection", conn);
+                commandSections.ExecuteNonQuery();
             }
         }
 
@@ -176,15 +187,15 @@ namespace EITC_route_planning.Services
                 SqlCommand command = new SqlCommand("INSERT INTO dbo.CachedSection(id, price, duration, fromCity, toCity, provider, weight, category_name) VALUES(@ID, @Price, @Duration, @FromCity, @ToCity, @Provider, @Weight, @Category)", conn);
 
                 List<City> cities = new List<City>();
-                
+                    
                 command.Parameters.Add("@ID", SqlDbType.Int);
-                command.Parameters.Add("@Price", SqlDbType.Text);
+                command.Parameters.Add("@Price", SqlDbType.Float);
                 command.Parameters.Add("@Duration", SqlDbType.Float);
                 command.Parameters.Add("@FromCity", SqlDbType.Text);
                 command.Parameters.Add("@ToCity", SqlDbType.Text);
                 command.Parameters.Add("@Provider", SqlDbType.Text);
                 command.Parameters.Add("@Weight", SqlDbType.Float);
-                command.Parameters.Add("@Cateogry", SqlDbType.Text);
+                command.Parameters.Add("@Category", SqlDbType.Text);
 
                 for (int i = 0; i < cachedSections.Count; i++)
                 {
