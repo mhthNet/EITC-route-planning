@@ -35,15 +35,16 @@ namespace EITC_route_planning.Models
             To = cityTo;
         }
 
-        public CachedSection(City from, City to, Decimal price, float duration, float weight, Category category, int length)
+        public CachedSection(int id, City from, City to, Decimal price, float duration, float weight, Category category, Provider provider)
         {
+            Id = id;
             Price = price;
             Duration = duration;
             Weight = weight;
             Category = category;
             From = from;
             To = to;
-            Length = length;
+            Provider = provider.Name;
         }
     }
 

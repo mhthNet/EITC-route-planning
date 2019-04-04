@@ -70,13 +70,14 @@ namespace EITC_route_planning.Services
 
             var data = cachedSection.Data;
             return new CachedSection(
+                data.Id,
                 sectionRequest.From, 
                 sectionRequest.To,
                 data.Price,
                 data.Duration,
                 sectionRequest.Weight,
                 sectionRequest.Category,
-                data.Length
+                new Provider("PLANE", "")
             );
         }
     }
