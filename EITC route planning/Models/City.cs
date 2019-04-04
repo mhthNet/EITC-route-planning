@@ -8,6 +8,12 @@ namespace EITC_route_planning.Models
 {
     public class City
     {
+        public City(string name)
+        {
+            Name = name;
+        }
+
+        public City() { }
 
         public City(string name, float xLocation, float yLocation)
         {

@@ -10,5 +10,11 @@ namespace EITC_route_planning.Models
         public float MaxWeight { get; set; }
         public Decimal Price { get; set; }
         public TransportationType TransportationType { get; set; }
+
+        public WeightGroup(float maxWeight, Decimal price)
+        {
+            MaxWeight = maxWeight;
+            Price = price;
+        }
     }
 }

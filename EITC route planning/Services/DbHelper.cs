@@ -210,5 +210,16 @@ namespace EITC_route_planning.Services
                 return categories;
             }
         }
+
+        public static List<WeightGroup> getAllWeightGroups()
+        {
+            return new List<WeightGroup>()
+            {
+                new WeightGroup(1, 40),
+                new WeightGroup(10, 50),
+                new WeightGroup(50, 60),
+                new WeightGroup(100, 70)
+            };
+        }
     }
 }
