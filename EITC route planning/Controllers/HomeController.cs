@@ -16,7 +16,10 @@ namespace EITC_route_planning.Controllers
         }
         public ActionResult RouteOverview()
         {
-            return View();
+            var sections = DbHelper.GetAllSectionsFromDb();
+            var model = new RouteOverview();
+            model.Sections = sections;
+            return View(model);
         }
 
         public void createShippment()
