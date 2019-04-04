@@ -174,12 +174,10 @@
     <Compile Include="Models\CalculatedRoute.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\EternalIntegrationConnections.cs" />
+    <Compile Include="Models\Provider.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionRequest.cs" />
-
     <Compile Include="Models\Shippment.cs" />
-
     <Compile Include="Models\TransportationType.cs" />
     <Compile Include="Models\WeightGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

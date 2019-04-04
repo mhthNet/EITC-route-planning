@@ -13,8 +13,20 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod1()
         {
-            ExternalIntegration.LoadAllSectionsFromAllExternals(new List<SectionRequest>(),
-                new EternalIntegrationConnections("", ""));
+
+            List<SectionRequest> testdata = new List<SectionRequest>
+            {
+                new SectionRequest(
+                    new City(),
+                    new City(), 
+                    2,
+                    new Category("Weapons", (float) 2.3),
+                    ExternalIntegration.Oceanic
+                )
+            };
+
+            var provider = new Provider("TestOurOwn", "http://wa-eitdk.azurewebsites.net/route/");
+            var result = ExternalIntegration.LoadAllSectionsFromProvider(testdata, provider);
             Assert.AreEqual(1, 1);
         }
     }
