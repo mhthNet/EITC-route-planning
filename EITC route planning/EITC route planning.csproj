@@ -113,6 +113,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="YC.QuickGraph, Version=3.7.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\YC.QuickGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -177,9 +181,7 @@
     <Compile Include="Models\EternalIntegrationConnections.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionRequest.cs" />
-
     <Compile Include="Models\Shippment.cs" />
-
     <Compile Include="Models\TransportationType.cs" />
     <Compile Include="Models\WeightGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
