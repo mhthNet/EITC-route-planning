@@ -15,7 +15,7 @@ namespace EITC_route_planning.Controllers
             var categories = DbHelper.GetAllCategoriesFromDb();
             var model = new Shippment();
             model.categories = categories;
-
+            
             return View(model);
         }
 
@@ -28,6 +28,8 @@ namespace EITC_route_planning.Controllers
                 var fromCity = Request.Form["from"];
                 var toCity = Request.Form["to"];
             }
+
+            DbHelper.GetAllCities();
 
         }
 
@@ -43,6 +45,7 @@ namespace EITC_route_planning.Controllers
 
         public ActionResult Index()
         {
+            DbHelper.GetAllSectionsFromDb();
             return View();
         }
 

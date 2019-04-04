@@ -190,3 +190,4 @@ C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC 
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csproj.CopyComplete
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.dll
 C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.pdb
+C:\Users\jachu\Documents\EITC-route-planning\EITC route planning\obj\Debug\EITC route planning.csprojAssemblyReference.cache

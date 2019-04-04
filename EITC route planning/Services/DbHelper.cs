@@ -11,9 +11,36 @@ namespace EITC_route_planning.Services
     public class DbHelper
 
     {
+        private static City cityFrom;
+        private static City cityTo;
+        private static int length;
+        private static TransportationType transportType;
+
         public static List<Section> GetAllSectionsFromDb()
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.from_Name LIKE Cities.name", conn);
+                SqlCommand command2 = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.to_name LIKE Cities.name", conn);
+
+                SqlDataReader reader2 = command2.ExecuteReader();
+                List<Section> sections = new List<Section>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Section section = new Section(cityFrom, cityTo, length, transportType);
+                        cityFrom = (reader[1].ToString(), (float) reader[9], (float)reader[10]);
+                        /*city.Location = new Point((int)reader[2], (int)reader[3]);
+                        cities.Add(city);*/
+                    }
+                }
+
+                return sections;
+            }
         }
 
         public static List<City> GetAllCities()
