@@ -42,6 +42,10 @@ namespace EITC_route_planning.Controllers
             var model = new Shippment();
             model.Categories = GetCategoryListItems(categories);
 
+            var cities = DbHelper.GetAllCities();
+            model.CitiesFrom = GetCityListItems(cities);
+            model.CitiesTo = GetCityListItems(cities);
+
             return View(model);
         }
 
@@ -59,18 +63,18 @@ namespace EITC_route_planning.Controllers
             return selectList;
         }
 
-        public ActionResult About()
+        private IEnumerable<SelectListItem> GetCityListItems(IEnumerable<City> elements)
         {
-            ViewBag.Message = "Your application description page.";
+            var selectList = new List<SelectListItem>();
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Text = element.Name
+                });
+            }
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return selectList;
         }
     }
 }

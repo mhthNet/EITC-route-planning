@@ -32,7 +32,8 @@ namespace EITC_route_planning.Services
                     {
                         City city = new City();
                         city.Name = reader[1].ToString();
-                        city.Location = new Point((int) reader[2], (int) reader[3]);
+                        city.XLocation = float.Parse(reader[2].ToString());
+                        city.YLocation = float.Parse(reader[3].ToString());
                         cities.Add(city);
                     }
                 }
