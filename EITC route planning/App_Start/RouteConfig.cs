@@ -20,6 +20,12 @@ namespace EITC_route_planning
             );
 
             routes.MapRoute(
+                name: "Map",
+                url: "map",
+                defaults: new { controller = "Map", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
