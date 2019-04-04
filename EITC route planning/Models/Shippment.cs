@@ -15,8 +15,6 @@ namespace EITC_route_planning.Models
 
         [Required]
         [Display(Name = "Type of package")]
-        public string Category { get; set; }
-        
-        public IEnumerable<SelectListItem> Categories { get; set; }
+        public List<Category> categories { get; set; }
     }
 }

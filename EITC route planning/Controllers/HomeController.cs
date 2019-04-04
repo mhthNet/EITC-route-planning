@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EITC_route_planning.Models;
+using EITC_route_planning.Services;
 
 namespace EITC_route_planning.Controllers
 {
@@ -11,39 +12,11 @@ namespace EITC_route_planning.Controllers
     {
         public ActionResult homePageModel()
         {
-            var categories = GetAllCategories();
+            var categories = DbHelper.GetAllCategoriesFromDb();
             var model = new Shippment();
-            model.Categories = GetSelectedCategories(categories);
+            model.categories = categories;
 
             return View(model);
-        }
-        private IEnumerable<string> GetAllCategories()
-        {
-            return new List<string>
-            {
-                "Heavy",
-                "Not Heavy",
-                "Dangerous",
-                "Non Dangerous"
-            };
-        }
-
-        private IEnumerable<SelectListItem> GetSelectedCategories(IEnumerable<string> elements)
-        {
-            var selectList = new List<SelectListItem>();
-
-            // This will result in MVC rendering each item as:
-            //     <option value="Category Name">Category Name</option>
-            foreach (var element in elements)
-            {
-                selectList.Add(new SelectListItem
-                {
-                    Value = element,
-                    Text = element
-                });
-            }
-
-            return selectList;
         }
 
         public void createShippment()
@@ -67,8 +40,6 @@ namespace EITC_route_planning.Controllers
         {
 
         }
-
-
 
         public ActionResult Index()
         {
