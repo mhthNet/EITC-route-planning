@@ -84,6 +84,21 @@ namespace EITC_route_planning.Services
             }
         }
 
+        public static City GetCityByName(string name)
+        {
+            List<City> cities = GetAllCities();
+            City cityWithId = null;
+            foreach (var city in cities)
+            {
+                if (city.Name == name)
+                {
+                    cityWithId = city;
+                    break;
+                }
+            }
+            return cityWithId;
+        }
+
         public static List<City> GetAllCities()
         {
             using (SqlConnection conn = new SqlConnection())
@@ -112,7 +127,43 @@ namespace EITC_route_planning.Services
 
         public static List<CachedSection> GetAllCachedSectionsFromDb()
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
+                conn.Open();
+
+                SqlCommand commandSections = new SqlCommand("SELECT * FROM Section");
+                List<CachedSection> cachedSections = new List<CachedSection>();
+
+                using (SqlDataReader reader = commandSections.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int cachedSectionId = (int)reader[0];
+                        decimal price = decimal.Parse(reader[1].ToString());
+                        float duration = float.Parse(reader[2].ToString());
+
+                        string cityFromName = reader[3].ToString();
+                        string cityToName = reader[4].ToString();
+
+                        City from = GetCityByName(cityFromName);
+                        City to = GetCityByName(cityToName);
+
+                        string provider = reader[5].ToString();
+                        float weight = float.Parse(reader[6].ToString());
+
+                        string categoryName = reader[7].ToString();
+                        Category category = GetCategoryByName(categoryName);
+
+                        CachedSection cachedSection = new CachedSection(from, to, price, duration, weight, category, length);
+                        cachedSection.Provider = provider;
+                        cachedSection.Id = cachedSectionId;
+
+                        cachedSections.Add(cachedSection);
+                    }
+                }
+                return cachedSections;
+            }
         }
 
         public static void SaveCachedSections(List<CachedSection>cachedSections)
@@ -145,6 +196,21 @@ namespace EITC_route_planning.Services
 
                 return transportationTypes;
             }
+        }
+
+        public static Category GetCategoryByName(string name)
+        {
+            List<Category> categories = GetAllCategoriesFromDb();
+            Category categoryWithId = null;
+            foreach (var category in categories)
+            {
+                if (category.Name == name)
+                {
+                    categoryWithId = category;
+                    break;
+                }
+            }
+            return categoryWithId;
         }
 
         public static List<Category> GetAllCategoriesFromDb()
