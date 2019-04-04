@@ -156,8 +156,8 @@ namespace EITC_route_planning.Services
                         string categoryName = reader[7].ToString();
                         Category category = GetCategoryByName(categoryName);
                         
-                        CachedSection cachedSection = new CachedSection(cachedSectionId, from, to, price, duration, weight, category, new Provider(provider, ""));
-                        cachedSection.Provider = provider;
+                        CachedSection cachedSection = new CachedSection(from, to, price, duration, weight, category, provider);
+                        cachedSection.Provider = provider == null ? "" : provider;
 
                         cachedSections.Add(cachedSection);
                     }

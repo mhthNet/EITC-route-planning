@@ -25,17 +25,15 @@ namespace EITC_route_planning.Services
 
         private static int Id = 0;
         private static CachedSection CalculateCachedSegment(Section section, float weight, Category category)
-        {
-            Id += 1;
+        { 
             return new CachedSection(
-                id:Id,
                 price: CalculatePrice(section, weight, category),
                 duration:CalculateDuration(section),
                 weight: weight,
                 category: category,
                 from: section.From,
                 to: section.To,
-                provider: new Provider("PLANE", "")
+                provider: ""
                 );
         }
 
