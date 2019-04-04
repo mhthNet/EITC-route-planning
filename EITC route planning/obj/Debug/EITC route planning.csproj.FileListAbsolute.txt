@@ -94,3 +94,4 @@ C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EIT
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csproj.CopyComplete
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.dll
 C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.pdb
+C:\Users\mhth\source\repos\EITC route planning\EITC route planning\obj\Debug\EITC route planning.csprojAssemblyReference.cache
