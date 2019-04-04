@@ -26,6 +26,15 @@ namespace EITC_route_planning.BusinessLogic
         //    return exactCalculatedRoutes[0];
         //}
 
+        static void CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
+        {
+            var cachedSections = FetchSections.FetchInternCachedSections(weight, category);
+            var cities = DbHelper.GetAllCities().Select(x => x.Name).ToList();
+            var route = ShortestPath.calculateKRoutes(origin, destination, cities, cachedSections, fastest, 1);
+            // Calculate total price and just do start/finish in response. Convert it to Json
+            throw new NotImplementedException();
+        }
+
         private static List<SectionRequest> mapToSectionRequests(List<CalculatedRoute> caldulatedRoutes)
         {
             throw new NotImplementedException();
