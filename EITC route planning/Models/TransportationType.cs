@@ -10,7 +10,7 @@ namespace EITC_route_planning.Models
         public string Name { get; set; }
         public string Type { get; set; }
 
-        public string Speed { get; set; }
+        public int Speed { get; set; }
 
         public float WeightLimit { get; set; }
     }
