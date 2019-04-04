@@ -11,9 +11,9 @@ namespace EITC_route_planning.Controllers
     public class RouteCalculatorController : Controller
     {
         // GET: RouteCalculator
-        public void Run()
-        {
-            var result = RouteCalculator.Calcuate(new Category(), 1, new City(), new City());
-        }
+        //public void Run()
+        //{
+        //    var result = RouteCalculator.Calcuate(new Category(), 1, new City(), new City());
+        //}
     }
 }

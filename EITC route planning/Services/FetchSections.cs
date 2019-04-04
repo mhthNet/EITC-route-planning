@@ -12,17 +12,19 @@ namespace EITC_route_planning.Services
         public static List<CachedSection> FetchCachedSections(
             List<Section> sections, float weight, Category category)
         {
-            DbHelper.GetAllCachedSectionsFromDb();
+
             // get own 
+            List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
+
+            List<CachedSection> ownAsCachedSections = ownSections.Select(CalculateCachedSegments).ToList();
+
 
             // get others from integration
 
-
             return new List<CachedSection>();
-            
         }
 
-        private CachedSection CalculateCachedSegments(Section section)
+        private static CachedSection CalculateCachedSegments(Section section)
         {
             return new CachedSection();
         }

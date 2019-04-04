@@ -1,19 +1,39 @@
-﻿using System;
+﻿using EITC_route_planning.Models;
+using EITC_route_planning.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using EITC_route_planning.Models;
 
-namespace EITC_route_planning.Services
+
+public class DbRouteUpdater
 {
-    public class DbRouteUpdater
+    public void Update()
     {
-        public void Update()
+        // fetch
+
+        //save to db
+
+    }
+
+    private List<Section> CityCombinations()
+    {
+
+        List<City> cities = DbHelper.GetAllCities();
+        List<Section> allCityCombo = new List<Section>();
+        foreach (var city in cities)
         {
-            // fetch
-            List<CachedSection> cachedSections = FetchSections.FetchCachedSections(new List<Section>(), 1, new Category());
-            //save to db
-            DbHelper.SaveCachedSections(cachedSections);
+            foreach (var city2 in cities)
+            {
+                if (city != city2)
+                {
+                    allCityCombo.Add(new Section(city, city2, 0, null));
+                }
+
+
+            }
+
         }
+
+        return allCityCombo;
     }
 }
