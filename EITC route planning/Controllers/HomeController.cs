@@ -10,16 +10,7 @@ namespace EITC_route_planning.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult homePageModel()
-        {
-            var categories = DbHelper.GetAllCategoriesFromDb();
-            var model = new Shippment();
-            model.categories = categories;
-
-            return View(model);
-        }
-
-        public void createShippment()
+        public void searchRoute()
         {
             if (HttpContext.Request.RequestType == "POST")
             {
@@ -36,14 +27,34 @@ namespace EITC_route_planning.Controllers
 
         }
 
-        public void searchRoute()
-        {
-
-        }
-
         public ActionResult Index()
         {
-            return View();
+            var categories = DbHelper.GetAllCategoriesFromDb();
+            var model = new Shippment();
+            model.Categories = GetCategoryListItems(categories);
+
+            return View(model);
+        }
+
+        private IEnumerable<SelectListItem> GetCategoryListItems(IEnumerable<Category> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    //Value = element,
+                    Text = element.Name
+                });
+            }
+
+            return selectList;
         }
 
         public ActionResult About()
