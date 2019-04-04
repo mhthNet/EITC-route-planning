@@ -13,6 +13,7 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod1()
         {
+            List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
             List<CachedSection> cached = FetchSections.FetchInternCachedSections(2, new Category("new", 1));
             DbHelper.SaveCachedSections(cached);
 
