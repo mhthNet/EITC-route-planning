@@ -26,7 +26,7 @@ namespace EITC_route_planning.BusinessLogic
         //    //return exactCalculatedRoutes[0];
         //}
 
-        static CalculatedRoute CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
+        public static CalculatedRoute CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
         {
             var cachedSections = FetchSections.FetchInternCachedSections(weight, category);
             var cities = DbHelper.GetAllCities().Select(x => x.Name).ToList();

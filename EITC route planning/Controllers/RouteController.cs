@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using EITC_route_planning.BusinessLogic;
 using EITC_route_planning.Models;
+using EITC_route_planning.Services;
 
 namespace EITC_route_planning.Controllers
 {
@@ -18,11 +19,31 @@ namespace EITC_route_planning.Controllers
         }
 
         // GET api/<controller>/5 
-        public string Get(string fromName, string toName, string parcelType, int weight, int filter)
+        public IHttpActionResult Get(string originName, string destinationName, string parcelType, int weight, int filter)
         {
+            if (!DbHelper.GetAllCities().Select(x => x.Name).Contains(originName) ||
+                !DbHelper.GetAllCities().Select(x => x.Name).Contains(destinationName))
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "One of the specified cities was not found"));
+            }
 
-            //var result = RouteCalculator.Calcuate(new Category(), 1, new City(), new City());
-            return @"{    ""valid"": ""true"",    ""duration"": 7,    ""price"": 25,    ""fromName"": ""Slavekysten"",    ""toName"": ""Saharah""}";
+            if (!DbHelper.GetAllCategoriesFromDb().Select(x => x.Name).Contains(parcelType))
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The specified parcel type was not found"));
+            }
+
+            if (!(filter == 0 || filter == 1))
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The specified filter was not found"));
+            }
+
+            if (weight > 100)
+            {
+                return Json(new {});
+            }
+            var result = RouteCalculator.CalculateInternalRoute(weight, new Category(parcelType), filter == 1, originName, destinationName);
+            
+            return Json(new { valid = "true", duration = result.Duration.ToString(), price = result.Price.ToString(), fromName = originName, toName = destinationName });
         }
 
         // POST api/<controller>
