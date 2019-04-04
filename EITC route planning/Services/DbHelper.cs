@@ -132,7 +132,7 @@ namespace EITC_route_planning.Services
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
                 conn.Open();
 
-                SqlCommand commandSections = new SqlCommand("SELECT * FROM Section");
+                SqlCommand commandSections = new SqlCommand("SELECT * FROM CachedSection");
                 List<CachedSection> cachedSections = new List<CachedSection>();
 
                 using (SqlDataReader reader = commandSections.ExecuteReader())
