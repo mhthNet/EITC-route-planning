@@ -95,7 +95,7 @@ namespace EITC_route_planning.Services
                 data.Duration,
                 sectionRequest.Weight,
                 sectionRequest.Category,
-                ""
+                provider.Name
             );
             newCachedSection.From.Name = newCachedSection.From.Name.ToUpper();
             newCachedSection.To.Name = newCachedSection.To.Name.ToUpper();
