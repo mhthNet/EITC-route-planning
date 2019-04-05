@@ -1,13 +1,14 @@
 ﻿using EITC_route_planning.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace EITC_route_planning.Services
 {
     public class DbRouteUpdater
     {
-        public static void Update()
+        public static void UpdateExternal()
         {
             float weight = 1;
             foreach (Category category in DbHelper.GetAllCategoriesFromDb())
@@ -19,6 +20,19 @@ namespace EITC_route_planning.Services
                 DbHelper.SaveCachedSections(newCachedSections);
             }
     
+        }
+
+        public static void UpdateInternal()
+        {
+            float weight = 1;
+            foreach (Category category in DbHelper.GetAllCategoriesFromDb())
+            {
+
+                List<CachedSection> newCachedSections = FetchSections.FetchInternCachedSections(weight, category);
+
+                DbHelper.SaveCachedSections(newCachedSections);
+            }
+
         }
 
         private static List<SectionRequest> BuildSectionRequests(float weight, Category category)
@@ -44,7 +58,7 @@ namespace EITC_route_planning.Services
             {
                 foreach (var city2 in cities)
                 {
-                    if (city != city2)
+                    if (city != city2 && CombinationExistsIn(city,city2, allCityCombo))
                     {
                         allCityCombo.Add(
                             new SectionRequest(
@@ -59,6 +73,11 @@ namespace EITC_route_planning.Services
                 }
             }
             return allCityCombo;
+        }
+
+        private static bool CombinationExistsIn(City city, City city2, List<SectionRequest> allCityCombo)
+        {
+            return allCityCombo.Any(x => (x.From == city && x.To == city2) || (x.From == city2 && x.To == city));
         }
     }
 }

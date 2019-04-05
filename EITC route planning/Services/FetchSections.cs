@@ -18,11 +18,11 @@ namespace EITC_route_planning.Services
             List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
 
             return ownSections.Select(
-                x => CalculateCachedSegment(x, weight, category)
+                x => CalculateInternalCachedSegment(x, weight, category)
             ).ToList();
         }
 
-        private static CachedSection CalculateCachedSegment(Section section, float weight, Category category)
+        private static CachedSection CalculateInternalCachedSegment(Section section, float weight, Category category)
         { 
             return new CachedSection(
                 price: CalculatePrice(section, weight, category),
@@ -31,16 +31,14 @@ namespace EITC_route_planning.Services
                 category: category,
                 from: section.From,
                 to: section.To,
-                provider: ExternalIntegration.Telstar.Name
+                provider: ExternalIntegration.EastIndia.Name
                 );
         }
 
         private static float CalculateDuration(Section section)
         {
-            float speed = 12; //section.TransportationType.Speed
+            float speed = section.TransportationType.Speed;
             return speed * section.Length;
-
-            return section.TransportationType.Speed * section.Length;
         }
 
         private static decimal CalculatePrice(Section section, float weight, Category category)

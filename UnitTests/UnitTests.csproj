@@ -111,6 +111,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestLoadSegemtsToCached.cs" />
+    <Compile Include="UnitTestCalculateRoute.cs" />
+    <Compile Include="UnitTestCreateCity.cs" />
     <Compile Include="UnitTestDbRouteUpdater.cs" />
     <Compile Include="UnitTestDbHelper.cs" />
     <Compile Include="UnitTestFetchSections.cs" />

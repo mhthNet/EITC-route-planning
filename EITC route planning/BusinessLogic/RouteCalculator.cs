@@ -24,7 +24,7 @@ namespace EITC_route_planning.BusinessLogic
             
             if (cachedSections.Count == 0)
             {
-                DbRouteUpdater.Update();
+                DbRouteUpdater.UpdateExternal();
                 cachedSections = DbCachedSectionLoader.Load(category);
             }
             cachedSections = removeCityRuleViolations(cachedSections, category);

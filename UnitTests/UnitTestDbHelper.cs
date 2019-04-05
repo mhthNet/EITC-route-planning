@@ -19,13 +19,13 @@ namespace UnitTests
             List<Section> expected = new List<Section>()
             {
                 new Section(
-                    new City("St helena"),
-                    new City("Kapstaden"),
+                    new City("ST HELENA"),
+                    new City("KAPSTAdEN"),
                     9,
                     new TransportationType("SHIP", 9, 900)
                     ),
-                new Section(new City("Kapstaden"),
-                    new City("Hvalbugten"),
+                new Section(new City("KAPSTADEN"),
+                    new City("HVALBUGTEN"),
                     3,
                     new TransportationType("SHIP", 9, 900))
 
@@ -58,12 +58,12 @@ namespace UnitTests
 
         public City MockCity()
         {
-            return new City("Cairo");
+            return new City("CAIRO");
         }
 
         public City MockCity2()
         {
-            return new City("Slavekysten");
+            return new City("SLAVEKYSTEN");
         }
 
         public CachedSection MockCachedSection()
