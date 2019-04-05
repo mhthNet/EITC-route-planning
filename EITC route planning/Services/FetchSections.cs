@@ -35,7 +35,7 @@ namespace EITC_route_planning.Services
             try
             {
                 return new CachedSection(
-                    price: CalculatePrice(section, weight, category),
+                    price: CalculatePrice(section, weight, DbHelper.GetCategoryByName(category.Name)),
                     duration: CalculateDuration(section),
                     weight: weight,
                     category: category,
