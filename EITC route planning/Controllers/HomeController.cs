@@ -40,24 +40,21 @@ namespace EITC_route_planning.Controllers
                 shippment.CityTo = model.CityTo;
 
                 CalculatedRoute calculatedRoute = null;
+                CalculatedRoute calculatedRouteCheap = null;
                 try
                 {
                     calculatedRoute = RouteCalculator.Calculate(model.Category, model.Weight,
-                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityFrom), true);
+                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityTo), true);
+
+                    calculatedRouteCheap = RouteCalculator.Calculate(model.Category, model.Weight,
+                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityTo), false);
                 }
                 catch (Exception e)
                 {
-                    
+                    Console.WriteLine(e.ToString());
                 }
-
-                List<List<Section>> searchedSections = new List<List<Section>>();
-                List<Section> fastSections = new List<Section>();
-                //TODO: use real data, not dummy data
-                fastSections.Add(new Section(new City("city1", 1.0f, 2.0f), new City("city2", 3.0f, 4.0f), 5, new TransportationType("SHIP", 12, 100)));
-                fastSections.Add(new Section(new City("city3", 1.0f, 2.0f), new City("city4", 3.0f, 4.0f), 5, new TransportationType("SHIP", 12, 100)));
-                searchedSections.Add(fastSections);
-
-                shippment.searchedSections = searchedSections;
+                shippment.searchedSections = calculatedRoute;
+                shippment.searchedSectionsCheap = calculatedRouteCheap;
 
                 shippment.Categories = GetCategoryListItems(categories);
                 shippment.CitiesFrom = GetCityListItems(cities);

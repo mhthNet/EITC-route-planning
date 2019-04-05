@@ -16,7 +16,8 @@ namespace EITC_route_planning.Models
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> CitiesFrom { get; set; }
         public IEnumerable<SelectListItem> CitiesTo { get; set; }
-        public List<List<Section>> searchedSections { get; set; }
+        public CalculatedRoute searchedSections { get; set; }
+        public CalculatedRoute searchedSectionsCheap { get; set; }
 
     }
 }
