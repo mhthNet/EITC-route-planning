@@ -15,7 +15,7 @@ namespace EITC_route_planning.Services
             {
                 var sectionsRequests = BuildSectionRequests(weight, category);
 
-                List<CachedSection> newCachedSections = FetchSections.FetchExternCachedSections(sectionsRequests);
+                List<CachedSection> newCachedSections = FetchSections.FetchExternCachedSections(sectionsRequests, mock: true);
 
                 DbHelper.SaveCachedSections(newCachedSections);
             }
@@ -39,7 +39,6 @@ namespace EITC_route_planning.Services
         {
             List<SectionRequest> sectionsRequests = new List<SectionRequest>();
             weight = 1;
-            category = new Category("Default", (float) 1.0);
 
             foreach (Provider provider in ExternalIntegration.Providers)
             {
@@ -58,7 +57,7 @@ namespace EITC_route_planning.Services
             {
                 foreach (var city2 in cities)
                 {
-                    if (city != city2 && CombinationExistsIn(city,city2, allCityCombo))
+                    if (city != city2 && !CombinationExistsIn(city,city2, allCityCombo))
                     {
                         allCityCombo.Add(
                             new SectionRequest(

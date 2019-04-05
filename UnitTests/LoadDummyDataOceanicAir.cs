@@ -11,6 +11,12 @@ namespace UnitTests
     public class LoadDummyDataOceanicAir
     {
         [TestMethod]
+        public void Clean()
+        {
+            DbHelper.ClearAllCachedSectionsFromDb();
+        }
+
+        [TestMethod]
         public void LoadOceanic()
         {
             List<CachedSection> cach = new List<CachedSection>()
