@@ -43,11 +43,11 @@ namespace EITC_route_planning.Controllers
                 try
                 {
                     calculatedRoute = RouteCalculator.Calculate(model.Category, model.Weight,
-                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityFrom), true);
+                        DbHelper.GetCityByName(model.CityFrom), DbHelper.GetCityByName(model.CityTo), true);
                 }
                 catch (Exception e)
                 {
-                    
+                    Console.WriteLine(e.ToString());
                 }
 
                 List<List<Section>> searchedSections = new List<List<Section>>();
