@@ -74,15 +74,18 @@ namespace EITC_route_planning.Controllers
                 shippment.Categories = GetCategoryListItems(categories);
                 shippment.CitiesFrom = GetCityListItems(cities);
                 shippment.CitiesTo = GetCityListItems(cities);
-                for (int i = 0; i < shippment.searchedSections.Route.Count; i++)
+                if (shippment.searchedSections != null && shippment.searchedSections.Route != null)
                 {
-                    TempData["price"+i] = shippment.searchedSections.Route[i].Price.ToString();
-                    TempData["duration"+i] = shippment.searchedSections.Route[i].Duration.ToString();
-                    TempData["from"+i] = shippment.searchedSections.Route[i].From.Name;
-                    TempData["to"+i] = shippment.searchedSections.Route[i].To.Name;
+                    for (int i = 0; i < shippment.searchedSections.Route.Count; i++)
+                    {
+                        TempData["price" + i] = shippment.searchedSections.Route[i].Price.ToString();
+                        TempData["duration" + i] = shippment.searchedSections.Route[i].Duration.ToString();
+                        TempData["from" + i] = shippment.searchedSections.Route[i].From.Name;
+                        TempData["to" + i] = shippment.searchedSections.Route[i].To.Name;
+                    }
+                    TempData["price"] = shippment.searchedSections.Price;
+                    TempData["duration"] = shippment.searchedSections.Duration;
                 }
-                TempData["price"] = shippment.searchedSections.Price;
-                TempData["duration"] = shippment.searchedSections.Duration;
 
                 return View("index", shippment);
             }
