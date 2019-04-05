@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>EIT CO.</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 <div class="container body-content">
-    <h1><a href="/home">East India Trading Company</a></h1>
+    <div class="title">
+        <h1><a href="/home">East India Trading Company</a></h1>
+    </div>
     <br/>
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <p>&copy; @DateTime.Now.Year - East India Trading Co.</p>
     </footer>
 </div>
 
