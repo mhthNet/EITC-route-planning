@@ -13,10 +13,11 @@ namespace UnitTests
         [TestMethod]
         public void TestPriceCalc()
         {
+            Category category = DbHelper.GetCategoryByName("Weapons");
 
-            List<CachedSection> cachedSections = FetchSections.FetchInternCachedSections(weight: 2, category: new Category("", 1));
+            List<CachedSection> cachedSections = FetchSections.FetchInternCachedSections( 2, category);
 
-            Assert.AreEqual(cachedSections, 1);
+            Assert.AreEqual((Decimal)9.6, cachedSections[0].Price);
         }
     }
 }
