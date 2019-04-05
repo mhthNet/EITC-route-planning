@@ -15,7 +15,7 @@ namespace EITC_route_planning.Services
         public static List<CachedSection> LoadAllSectionsFromAllProviders(List<SectionRequest> sectionRequests)
         {
 
-            Random random = new Random();
+            Random random = new Random(2);
             return sectionRequests.Select(x => new CachedSection(
                     x.From,
                     x.To,
