@@ -19,11 +19,11 @@ namespace BusinessLogic
             // Arrange
             // Create nodes
             var nodes = new List<string>();
-            var cityA = new City("A");
-            var cityB = new City("B");
-            var cityC = new City("C");
-            var cityD = new City("D");
-            var cityE = new City("E");
+            var cityA = new City("CAIRO");
+            var cityB = new City("SLAVEKYSTEN");
+            var cityC = new City("KAPSTADEN");
+            var cityD = new City("SAHARA");
+            var cityE = new City("CONGO");
             nodes.Add(cityA.Name);
             nodes.Add(cityB.Name);
             nodes.Add(cityC.Name);
@@ -45,7 +45,7 @@ namespace BusinessLogic
             // 
             Assert.AreEqual(13, res.Duration);
             Assert.AreEqual(113, res.Price);
-            Assert.AreEqual("A",res.Route[0].To.Name);
+            Assert.AreEqual(cityA.Name,res.Route[0].To.Name);
         }
 
         [TestMethod]
@@ -54,11 +54,11 @@ namespace BusinessLogic
             // Arrange
             // Create nodes
             var nodes = new List<string>();
-            var cityA = new City("A");
-            var cityB = new City("B");
-            var cityC = new City("C");
-            var cityD = new City("D");
-            var cityE = new City("E");
+            var cityA = new City("CAIRO");
+            var cityB = new City("SLAVEKYSTEN");
+            var cityC = new City("KAPSTADEN");
+            var cityD = new City("SAHARA");
+            var cityE = new City("CONGO");
             nodes.Add(cityA.Name);
             nodes.Add(cityB.Name);
             nodes.Add(cityC.Name);
@@ -80,7 +80,7 @@ namespace BusinessLogic
             // Assert
             Assert.AreEqual(101, res.Duration);
             Assert.AreEqual(1, res.Price);
-            Assert.AreEqual("B", res.Route[0].To.Name);
+            Assert.AreEqual(cityB.Name, res.Route[0].To.Name);
         }
 
         [TestMethod]
@@ -89,9 +89,9 @@ namespace BusinessLogic
             // Arrange
             // Create nodes
             var nodes = new List<string>();
-            var cityA = new City("A");
-            var cityB = new City("B");
-            var cityC = new City("C");
+            var cityA = new City("CAIRO");
+            var cityB = new City("SAHARA");
+            var cityC = new City("SLAVEKYSTEN");
             nodes.Add(cityA.Name);
             nodes.Add(cityB.Name);
             nodes.Add(cityC.Name);
@@ -109,11 +109,11 @@ namespace BusinessLogic
 
             // Assert
             Assert.AreEqual(14, res[0].Price);
-            Assert.AreEqual("B", res[0].Route[0].To.Name);
+            Assert.AreEqual(cityB.Name, res[0].Route[0].To.Name);
             Assert.AreEqual(15, res[1].Price);
-            Assert.AreEqual("C", res[1].Route[0].To.Name);
+            Assert.AreEqual(cityC.Name, res[1].Route[0].To.Name);
             Assert.AreEqual(17, res[2].Price);
-            Assert.AreEqual("B", res[2].Route[0].To.Name);
+            Assert.AreEqual(cityB.Name, res[2].Route[0].To.Name);
             Assert.AreEqual(3,res.Count);
         }
 
@@ -122,8 +122,8 @@ namespace BusinessLogic
         {
             // Arrange
             var nodes = new List<string>();
-            var cityA = new City("A");
-            var cityB = new City("B");
+            var cityA = new City("CAIRO");
+            var cityB = new City("SLAVEKYSTEN");
             nodes.Add(cityA.Name);
             nodes.Add(cityB.Name);
             var edges = new List<CachedSection>();

@@ -22,7 +22,7 @@ namespace EITC_route_planning.Services
             {
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON UPPER(Section.from_Name) LIKE UPPER(Cities.name)", conn);
+                SqlCommand command = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.from_Name LIKE Cities.name", conn);
                 
                 List<Section> sections = new List<Section>();
                 List<City> citiesFrom = new List<City>();
@@ -46,7 +46,7 @@ namespace EITC_route_planning.Services
                     reader.Close();
                 }
 
-                SqlCommand command2 = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON UPPER(Section.to_name) LIKE UPPER(Cities.name)", conn);
+                SqlCommand command2 = new SqlCommand("SELECT *, Cities.X, Cities.Y FROM Section INNER JOIN Cities ON Section.to_name LIKE Cities.name", conn);
                 using (SqlDataReader reader2 = command2.ExecuteReader())
                 {
                     while (reader2.Read())

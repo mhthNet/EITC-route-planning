@@ -9,7 +9,6 @@
         <div class="col-sm-6">
             <label for="weight">Weight (kg)</label>
             @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
-
             <!--<input id="weight" type="number" class="form-control" aria-describedby="weightHelp" placeholder="ex: 2.8" aria-describedby="weightAddon">-->
         </div>
         <div class="col-sm-6">
@@ -37,13 +36,12 @@
     </form>
 }
 
-<br />
-
-<img src="http://3.bp.blogspot.com/-moi6Kgo0YRg/UVOAn63VKcI/AAAAAAAADxM/lINGO-IXeTA/s1600/Spel,%20Den%20f%C3%B6rsvunna%20diamanten.%20Fr%C3%A5n%20slutet%20av%201990-talet%20(2).JPG" alt="Map of Africa" style="width: 35%; display: block; margin-left: auto; margin-right: auto;">
 <!--
-<iframe name="frameMain" width="80%" height="450px" scrolling="auto" src="https://www.dr.dk/ligetil"></iframe>
+<img src="http://3.bp.blogspot.com/-moi6Kgo0YRg/UVOAn63VKcI/AAAAAAAADxM/lINGO-IXeTA/s1600/Spel,%20Den%20f%C3%B6rsvunna%20diamanten.%20Fr%C3%A5n%20slutet%20av%201990-talet%20(2).JPG" alt="Map of Africa" style="width: 35%; display: block; margin-left: auto; margin-right: auto;">
 -->
-<br />
+<div style="padding-top: 20%; padding-left: 8%; padding-bottom: 8%">
+    <iframe name="frameMain" width="70%" height="600px" scrolling="auto" src="http://boxtown.dk/Map"></iframe>
+</div>
 
 @if (Model.searchedSections != null)
 {
