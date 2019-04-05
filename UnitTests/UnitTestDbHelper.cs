@@ -19,13 +19,13 @@ namespace UnitTests
             List<Section> expected = new List<Section>()
             {
                 new Section(
-                    new City("St helena"),
-                    new City("Kapstaden"),
+                    new City("ST HELENA"),
+                    new City("KAPSTADEN"),
                     9,
                     new TransportationType("SHIP", 9, 900)
                     ),
-                new Section(new City("Kapstaden"),
-                    new City("Hvalbugten"),
+                new Section(new City("KAPSTADEN"),
+                    new City("HVALBUGTEN"),
                     3,
                     new TransportationType("SHIP", 9, 900))
 
