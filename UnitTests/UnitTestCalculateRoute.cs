@@ -32,7 +32,7 @@ namespace UnitTests
             City from = new City("CAIRO");
             City to = new City("ST HELENA");
             CalculatedRoute route = RouteCalculator.Calculate(category, 3, from, to, true);
-            Assert.AreEqual(new Decimal(48), route.Price);
+            Assert.AreEqual(new Decimal(130), route.Price);
             Assert.AreEqual(96, route.Duration);
         }
     }

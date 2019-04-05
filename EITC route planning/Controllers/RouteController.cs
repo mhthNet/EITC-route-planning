@@ -43,13 +43,21 @@ namespace EITC_route_planning.Controllers
             }
             try
             {
-                var result = RouteCalculator.CalculateInternalRoute(
+                var result = RouteCalculator.Calculate(
                     DbHelper.GetCategoryByName(parcelType),
                     weight,
-                    fromName, 
-                    toName,
+                    DbHelper.GetCityByName(fromName),
+                    DbHelper.GetCityByName(toName),
                     filter == 1
                 );
+
+                //var result = RouteCalculator.CalculateInternalRoute(
+                //    DbHelper.GetCategoryByName(parcelType),
+                //    weight,
+                //    fromName, 
+                //    toName,
+                //    filter == 1
+                //);
 
                 return Json(new
                 {
