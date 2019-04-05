@@ -76,6 +76,30 @@
         </a>
         
 
-        <a href="#" class="list-group-item">Cheapest route: </a>
+        <a href="/overview" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h4>Cheapest Route</h4>
+                </div>
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>From:</strong> @Model.searchedSectionsCheap.Route.ToArray()[0].From.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Duration:</strong> @Model.searchedSectionsCheap.Duration
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>To:</strong> @Model.searchedSectionsCheap.Route.ToArray()[Model.searchedSectionsCheap.Route.ToArray().Length - 1].To.Name
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Cost:</strong> @Model.searchedSectionsCheap.Price
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 }
