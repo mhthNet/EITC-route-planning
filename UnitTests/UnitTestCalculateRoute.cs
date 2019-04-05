@@ -18,7 +18,7 @@ namespace UnitTests
             City from = new City("SLAVEKYSTEN");
             City to = new City("SIERRA LEONE");
             CalculatedRoute route =RouteCalculator.CalculateInternalRoute(2, category, true, from.Name, to.Name);
-            Assert.AreEqual(new Decimal(19.2), route.Price);
+            Assert.AreEqual(new Decimal(48), route.Price);
             Assert.AreEqual(96, route.Duration);
         }
     }

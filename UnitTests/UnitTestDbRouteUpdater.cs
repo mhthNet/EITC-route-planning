@@ -28,7 +28,7 @@ namespace UnitTests
 
             Assert.AreEqual(res[0].Category.Name, "Weapons");
             Assert.AreEqual(res[0].Provider, ExternalIntegration.EastIndia.Name);
-            Assert.AreEqual(res[0].Price, new Decimal(9.6));
+            Assert.AreEqual(res[0].Price, new Decimal(54));
         }
     }
 }

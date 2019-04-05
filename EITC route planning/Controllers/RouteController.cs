@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -40,9 +41,29 @@ namespace EITC_route_planning.Controllers
             {
                 return Json(new {});
             }
-            var result = RouteCalculator.CalculateInternalRoute(weight, new Category(parcelType), filter == 1, fromName, toName);
-            
-            return Json(new { valid = "true", duration = result.Duration.ToString(), price = result.Price.ToString(), fromName = fromName, toName = toName });
+            try
+            {
+                var result = RouteCalculator.CalculateInternalRoute(
+                    weight, 
+                    DbHelper.GetCategoryByName(parcelType), 
+                    filter == 1,
+                    fromName, toName
+                );
+
+                return Json(new
+                {
+                    valid = "true",
+                    duration = result.Duration.ToString(),
+                    price = result.Price.ToString(),
+                    fromName = fromName,
+                    toName = toName
+                });
+            }
+            catch (InvalidDataException e)
+            {
+                Console.Write(e.Message);
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The route could not be calculated"));
+            }
         }
 
     }

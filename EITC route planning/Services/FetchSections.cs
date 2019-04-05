@@ -54,13 +54,14 @@ namespace EITC_route_planning.Services
 
         public static decimal CalculatePrice(Section section, float weight, Category category)
         {
-            List<WeightGroup> weightGroups = DbHelper.getAllWeightGroups();
+            List<WeightGroup> weightGroups = DbHelper.GetAllWeightGroupsFromDb();
             try
             {
-                WeightGroup weightGroup = weightGroups
-                    .OrderBy(it => it.MaxWeight)
-                    .First(it => it.MaxWeight >= weight);
-                return weightGroup.Price * (decimal) category.PriceFactor;
+                List<WeightGroup> weightGroups2 = weightGroups
+                    .OrderBy(i => i.MaxWeight).ToList();
+
+                WeightGroup weightGroup = weightGroups2.First(it => it.MaxWeight >= weight);
+                return weightGroup.Price * (decimal) category.PriceFactor * section.Length;
             }
             catch
             {

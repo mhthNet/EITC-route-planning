@@ -18,7 +18,7 @@ namespace UnitTests
 
             List<CachedSection> cachedSections = FetchSections.FetchInternCachedSections( 2, category);
 
-            Assert.AreEqual(new Decimal(9.6), cachedSections[0].Price);
+            Assert.AreEqual(new Decimal(54), cachedSections[0].Price);
         }
 
 
@@ -58,7 +58,7 @@ namespace UnitTests
 
             List<CachedSection> cachedSections = FetchSections.FetchInternCachedSections(weight, category);
 
-            Assert.AreEqual(cachedSections.Count, 0);
+            Assert.AreEqual(0, cachedSections.Count);
         }
     }
 }
