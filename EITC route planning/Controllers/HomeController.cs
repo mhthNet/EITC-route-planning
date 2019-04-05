@@ -16,7 +16,22 @@ namespace EITC_route_planning.Controllers
             var sections = DbHelper.GetAllSectionsFromDb();
             var model = new RouteOverview();
             model.Sections = sections;
-            return View(model);
+            for (int i = 0; i < TempData.Keys.Count - 2; i++)
+            {
+                if (TempData.ContainsKey("price" + i))
+                    ViewData["price" + i] = TempData["price" + i];
+                if (TempData.ContainsKey("duration" + i))
+                    ViewData["duration" + i] = TempData["duration" + i];
+                if (TempData.ContainsKey("from" + i))
+                    ViewData["from" + i] = TempData["from" + i];
+                if (TempData.ContainsKey("To" + i))
+                    ViewData["To" + i] = TempData["To" + i];
+            }
+            if (TempData.ContainsKey("price"))
+                ViewData["price"] = TempData["price"];
+            if (TempData.ContainsKey("duration"))
+                ViewData["duration"] = TempData["duration"];
+            return View();
         }
 
         [HttpPost]
@@ -59,6 +74,15 @@ namespace EITC_route_planning.Controllers
                 shippment.Categories = GetCategoryListItems(categories);
                 shippment.CitiesFrom = GetCityListItems(cities);
                 shippment.CitiesTo = GetCityListItems(cities);
+                for (int i = 0; i < shippment.searchedSections.Route.Count; i++)
+                {
+                    TempData["price"+i] = shippment.searchedSections.Route[i].Price.ToString();
+                    TempData["duration"+i] = shippment.searchedSections.Route[i].Duration.ToString();
+                    TempData["from"+i] = shippment.searchedSections.Route[i].From.Name;
+                    TempData["to"+i] = shippment.searchedSections.Route[i].To.Name;
+                }
+                TempData["price"] = shippment.searchedSections.Price;
+                TempData["duration"] = shippment.searchedSections.Duration;
 
                 return View("index", shippment);
             }

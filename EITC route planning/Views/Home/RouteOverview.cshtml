@@ -1,31 +1,30 @@
-﻿
+﻿@using EITC_route_planning.Models
+@model EITC_route_planning.Models.Shippment
 @{
     ViewBag.Title = "RouteOverview";
 }
-
 <h2>Route Overview</h2>
-
 <div class="list-group">
-    
-    @for(int i = 0; i < 10; i++) {
 
+    @for(int i = 0; i < ViewData.Keys.Count - 2; i++)
+    {
         <a href="#" class="list-group-item np-y">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-xs-6">
-                            <strong>From:</strong> x
+                            <strong>From:</strong> @ViewData["from" + i];
                         </div>
                         <div class="col-xs-6">
-                            <strong>Duration:</strong> x
+                            <strong>Duration:</strong> @ViewData["duration" + i];
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <strong>To:</strong> x
+                            <strong>To:</strong> @ViewData["To" + i];
                         </div>
                         <div class="col-xs-6">
-                            <strong>Cost:</strong> x
+                            <strong>Cost:</strong> @ViewData["price" + i];
                         </div>
                     </div>
                 </div>
@@ -33,18 +32,17 @@
         </a>
     }
 </div>
-
 <div class="list-group">
     <a href="#" class="list-group-item np-y">
         <div class="row">
             <div class="col-xs-6">
-                <strong>Total duration:</strong> x
+                <strong>Total duration:</strong> @ViewData["price"];
             </div>
             <div class="col-xs-6">
-                <strong>Total cost:</strong> x
+                <strong>Total cost:</strong> @ViewData["duration"];
             </div>
         </div>
     </a>
-    <br/>
+    <br />
     <a href="/home" class="btn btn-primary">Back</a>
 </div>
