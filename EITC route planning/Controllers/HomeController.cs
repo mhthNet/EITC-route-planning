@@ -58,6 +58,7 @@ namespace EITC_route_planning.Controllers
                 searchedSections.Add(fastSections);
 
                 shippment.searchedSections = searchedSections;
+                shippment.searchedSections = calculatedRoute;
 
                 shippment.Categories = GetCategoryListItems(categories);
                 shippment.CitiesFrom = GetCityListItems(cities);
