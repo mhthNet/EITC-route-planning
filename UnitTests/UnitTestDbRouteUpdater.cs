@@ -10,8 +10,9 @@ namespace UnitTests
     public class UnitTestDbRouteUpdater
     {
         [TestMethod]
-        public void TestUpdate()
+        public void TestUpdateExternal()
         {
+
             DbRouteUpdater.UpdateExternal();
             var res = DbCachedSectionLoader.Load(new Category("Weapons", 2));
 

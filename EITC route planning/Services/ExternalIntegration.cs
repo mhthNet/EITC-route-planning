@@ -29,7 +29,7 @@ namespace EITC_route_planning.Services
         public static List<Provider> Providers = new List<Provider>()
             {
                 Oceanic,
-                //Telstar
+                Telstar
             };
 
         public static List<CachedSection> LoadAllSectionsFromAllProviders(List<SectionRequest> sectionRequests)
