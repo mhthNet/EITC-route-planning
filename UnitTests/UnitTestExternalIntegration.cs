@@ -37,8 +37,8 @@ namespace UnitTests
             List<SectionRequest> testdata = new List<SectionRequest>
             {
                 new SectionRequest(
-                    new City("Cairo"),
-                    new City("Cairo"),
+                    new City("CAIRO"),
+                    new City("CAIRO"),
                     2,
                     new Category("Weapons", (float) 2.3),
                     ExternalIntegration.Oceanic
@@ -49,8 +49,8 @@ namespace UnitTests
 
             Assert.AreEqual(result[0].Price, 100);
             Assert.AreEqual(result[0].Duration, 8);
-            Assert.AreEqual(result[0].From.Name, "Congo");
-            Assert.AreEqual(result[0].To.Name, "Cairo");
+            Assert.AreEqual(result[0].From.Name, "CAIRO");
+            Assert.AreEqual(result[0].To.Name, "CAIRO");
         }
 
         [TestMethod]
@@ -59,8 +59,8 @@ namespace UnitTests
             List<SectionRequest> testdata = new List<SectionRequest>
             {
                 new SectionRequest(
-                    new City("test"),
-                    new City("test2"),
+                    new City("CONGO"),
+                    new City("CAIRO"),
                     2,
                     new Category("Weapons", (float) 2.3),
                     ExternalIntegration.Telstar
