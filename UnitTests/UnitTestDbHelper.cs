@@ -20,7 +20,7 @@ namespace UnitTests
             {
                 new Section(
                     new City("ST HELENA"),
-                    new City("KAPSTADEN"),
+                    new City("KAPSTAdEN"),
                     9,
                     new TransportationType("SHIP", 9, 900)
                     ),
@@ -39,6 +39,48 @@ namespace UnitTests
             Assert.AreEqual(sections[1].To.Name, expected[1].To.Name);
             Assert.AreEqual(sections[1].Length, expected[1].Length);
             Assert.AreEqual(sections[1].TransportationType.Type, expected[1].TransportationType.Type);
+        }
+
+        [TestMethod]
+        public void testSaveCategory()
+        {
+            List<CachedSection> cach = new List<CachedSection>()
+            {
+                MockCachedSection(),
+                MockCachedSection(),
+                MockCachedSection(),
+            };
+            DbHelper.SaveCachedSections(cach);
+
+            var rload = DbHelper.GetAllCachedSectionsFromDb();
+            
+        }
+
+        public City MockCity()
+        {
+            return new City("CAIRO");
+        }
+
+        public City MockCity2()
+        {
+            return new City("SLAVEKYSTEN");
+        }
+
+        public CachedSection MockCachedSection()
+        {
+            return new CachedSection(
+                MockCity(), 
+                MockCity2(),
+                30, 
+                4, 
+                50,
+                MockCategory(),
+                ExternalIntegration.Telstar.Name);
+        }
+
+        public Category MockCategory()
+        {
+            return new Category("Weapons", 1);
         }
     }
 }

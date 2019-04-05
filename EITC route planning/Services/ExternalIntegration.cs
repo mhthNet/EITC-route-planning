@@ -29,7 +29,7 @@ namespace EITC_route_planning.Services
         public static List<Provider> Providers = new List<Provider>()
             {
                 Oceanic,
-                Telstar
+                //Telstar
             };
 
         public static List<CachedSection> LoadAllSectionsFromAllProviders(List<SectionRequest> sectionRequests)
@@ -43,10 +43,25 @@ namespace EITC_route_planning.Services
             return result;
         }
 
-        public static List<CachedSection> LoadAllSectionsFromProvider(List<SectionRequest> sectionRequests, Provider provider)
+        public static List<CachedSection> LoadAllSectionsFromProvider(
+            List<SectionRequest> sectionRequests, Provider provider)
         {
-            return sectionRequests.Select(s => LoadSectionFromExternal(provider, s)).ToList();
+            return sectionRequests.Select(s => TryLoadAllSectionsFromProvider(s, provider)).Where(x => x != null).ToList();
         }
+
+        private static CachedSection TryLoadAllSectionsFromProvider(SectionRequest sectionRequests,
+            Provider provider)
+        {
+            try
+            {
+                return LoadSectionFromExternal(provider, sectionRequests);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         private static CachedSection LoadSectionFromExternal(Provider provider, SectionRequest sectionRequest)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>()

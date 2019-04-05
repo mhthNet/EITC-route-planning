@@ -12,10 +12,16 @@ namespace EITC_route_planning.Models
     {
         public City(string name)
         {
-            var some = DbHelper.GetAllCities();
-            if (DbHelper.GetAllCities().All(c => c.Name != name))
-                throw new InvalidDataException("city name does not exists");
+            name = validate(name);
             Name = name;
+        }
+
+        private static string validate(string name)
+        {
+            name = name.ToUpper();
+            if (DbHelper.GetAllCities().All(c => c.Name != name))
+                throw new InvalidDataException("city name " + name + " does not exists");
+            return name;
         }
 
         public City() { }

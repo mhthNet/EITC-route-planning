@@ -184,33 +184,30 @@ namespace EITC_route_planning.Services
             {
                 conn.ConnectionString = "Server=dbs-eitdk.database.windows.net;Database=db-eitdk;User Id=admin-eitdk;Password=Eastindia4thewin";
                 conn.Open();
-                SqlCommand command = new SqlCommand("INSERT INTO dbo.CachedSection(id, price, duration, fromCity, toCity, provider, weight, category_name) VALUES(@ID, @Price, @Duration, @FromCity, @ToCity, @Provider, @Weight, @Category)", conn);
+                SqlCommand command = new SqlCommand("INSERT INTO dbo.CachedSection(price, duration, fromCity, toCity, provider, weight, category_name) VALUES(@Price, @Duration, UPPER(@FromCity), UPPER(@ToCity), @Provider, @Weight, @Category)", conn);
 
                 List<City> cities = new List<City>();
                     
-                command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters.Add("@Price", SqlDbType.Float);
                 command.Parameters.Add("@Duration", SqlDbType.Float);
-                command.Parameters.Add("@FromCity", SqlDbType.Text);
-                command.Parameters.Add("@ToCity", SqlDbType.Text);
+                command.Parameters.Add("@FromCity", SqlDbType.VarChar,254);
+                command.Parameters.Add("@ToCity", SqlDbType.VarChar, 254);
                 command.Parameters.Add("@Provider", SqlDbType.Text);
                 command.Parameters.Add("@Weight", SqlDbType.Float);
                 command.Parameters.Add("@Category", SqlDbType.Text);
 
-                for (int i = 0; i < cachedSections.Count; i++)
+                foreach ( CachedSection cachedSection in cachedSections)
                 {
-                    command.Parameters["@ID"].Value = i + 1;
-                    command.Parameters["@Price"].Value = cachedSections[i].Price;
-                    command.Parameters["@Duration"].Value = cachedSections[i].Duration;
-                    command.Parameters["@FromCity"].Value = cachedSections[i].From.Name;
-                    command.Parameters["@ToCity"].Value = cachedSections[i].To.Name;
-                    command.Parameters["@Provider"].Value = cachedSections[i].Provider;
-                    command.Parameters["@Weight"].Value = cachedSections[i].Weight;
-                    command.Parameters["@Category"].Value = cachedSections[i].Category.Name;
+                    command.Parameters["@Price"].Value = cachedSection.Price;
+                    command.Parameters["@Duration"].Value = cachedSection.Duration;
+                    command.Parameters["@FromCity"].Value = cachedSection.From.Name;
+                    command.Parameters["@ToCity"].Value = cachedSection.To.Name;
+                    command.Parameters["@Provider"].Value = cachedSection.Provider;
+                    command.Parameters["@Weight"].Value = cachedSection.Weight;
+                    command.Parameters["@Category"].Value = cachedSection.Category.Name;
                     
                     command.ExecuteNonQuery();
                 }
-                
             }
         }
 
