@@ -25,6 +25,7 @@ namespace EITC_route_planning.BusinessLogic
             if (cachedSections.Count == 0)
             {
                 DbRouteUpdater.UpdateExternal();
+                DbRouteUpdater.UpdateInternal();
                 cachedSections = DbCachedSectionLoader.Load(category);
             }
             cachedSections = removeCityRuleViolations(cachedSections, category);
@@ -38,14 +39,14 @@ namespace EITC_route_planning.BusinessLogic
             List<SectionRequest> sections = CalculatedRouteToSectionRequests(approximatedcalculatedRoutes, weight);
 
             List<CachedSection> upToDateSections = FetchSections.FetchInternCachedSections(weight, category);
-            upToDateSections.AddRange(FetchSections.FetchExternCachedSections(sections));
+            upToDateSections.AddRange(FetchSections.FetchExternCachedSections(sections, mock: true));
 
             List<CalculatedRoute> exactCalculatedRoutes = ShortestPath.calculateKRoutes(from.Name, to.Name, cityNames, upToDateSections, fastest, 1);
             if (exactCalculatedRoutes.Count == 0)
             {
                 List<SectionRequest> sectionRequests = ExternalCachedSectionToSectionRequests(cachedSections, weight);
                 List<CachedSection> allUpToDateSections = FetchSections.FetchInternCachedSections(weight, category);
-                allUpToDateSections.AddRange(FetchSections.FetchExternCachedSections(sectionRequests));
+                allUpToDateSections.AddRange(FetchSections.FetchExternCachedSections(sectionRequests, mock: true));
                 allUpToDateSections = removeCityRuleViolations(allUpToDateSections, category);
                 var slowExactCalculatedRoutes =
                     ShortestPath.calculateKRoutes(from.Name, to.Name, cityNames, allUpToDateSections, fastest, 1);
@@ -58,11 +59,11 @@ namespace EITC_route_planning.BusinessLogic
             return exactCalculatedRoutes[0];
         }
 
-        public static CalculatedRoute CalculateInternalRoute(float weight, Category category, bool fastest, string origin, string destination)
+        public static CalculatedRoute CalculateInternalRoute(Category category, float weight, string from, string to, bool fastest)
         {
             var cachedSections = FetchSections.FetchInternCachedSections(weight, category);
             var cities = DbHelper.GetAllCities().Select(x => x.Name).ToList();
-            var routes = ShortestPath.calculateKRoutes(origin, destination, cities, cachedSections, fastest, 1);
+            var routes = ShortestPath.calculateKRoutes(from, to, cities, cachedSections, fastest, 1);
             // Calculate total price and just do start/finish in response. Convert it to Json
 
             if (routes.Count == 0)

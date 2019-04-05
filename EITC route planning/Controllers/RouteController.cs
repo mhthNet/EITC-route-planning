@@ -44,10 +44,11 @@ namespace EITC_route_planning.Controllers
             try
             {
                 var result = RouteCalculator.CalculateInternalRoute(
-                    weight, 
-                    DbHelper.GetCategoryByName(parcelType), 
-                    filter == 1,
-                    fromName, toName
+                    DbHelper.GetCategoryByName(parcelType),
+                    weight,
+                    fromName, 
+                    toName,
+                    filter == 1
                 );
 
                 return Json(new

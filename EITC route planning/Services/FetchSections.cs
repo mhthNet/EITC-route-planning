@@ -15,6 +15,12 @@ namespace EITC_route_planning.Services
         {
             return ExternalIntegration.LoadAllSectionsFromAllProviders(sectionRequests);
         }
+
+        public static List<CachedSection> FetchExternCachedSections(List<SectionRequest> sectionRequests, Boolean mock=true)
+        {
+            return MockExternalCachedSections.LoadAllSectionsFromAllProviders(sectionRequests);
+        }
+
         public static List<CachedSection> FetchInternCachedSections(float weight, Category category)
         {
             List<Section> ownSections = DbHelper.GetAllSectionsFromDb();
